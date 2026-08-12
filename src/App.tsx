@@ -4,270 +4,182 @@ import { GlobalStyle } from './styles/global'
 
 const A = '/assets/'
 
-// Futuramente, este array pode ser substituído pelo retorno da API/BD.
+// Estrutura preparada para futuramente receber projetos vindos da API/banco de dados.
 const projects = [
-  { id: 1, title: 'Projeto 01', category: 'Filme / Direção', year: '2025', image: `${A}lines-01.webp`, tone: 'dark' },
-  { id: 2, title: 'Projeto 02', category: 'Campanha / Conteúdo', year: '2025', image: `${A}lines-03.webp`, tone: 'light' },
-  { id: 3, title: 'Projeto 03', category: 'Fotografia / Editorial', year: '2025', image: `${A}lines-05.webp`, tone: 'dark' },
-  { id: 4, title: 'Projeto 04', category: 'Videoclipe / Arte', year: '2024', image: `${A}lines-02.webp`, tone: 'light' },
-  { id: 5, title: 'Projeto 05', category: 'Identidade / Visual', year: '2024', image: `${A}lines-04.webp`, tone: 'dark' },
-  { id: 6, title: 'Projeto 06', category: 'Produção / Pós', year: '2024', image: `${A}lines-06.webp`, tone: 'light' },
+  { id: 1, title: 'Projeto 01', category: 'Produção mobile', year: '2025', image: `${A}lines-01.webp`, featured: true },
+  { id: 2, title: 'Projeto 02', category: 'Conteúdo / Social', year: '2025', image: `${A}lines-03.webp`, featured: false },
+  { id: 3, title: 'Projeto 03', category: 'One Sessions', year: '2025', image: `${A}lines-05.webp`, featured: true },
+  { id: 4, title: 'Projeto 04', category: 'Campanha', year: '2024', image: `${A}lines-02.webp`, featured: false },
+  { id: 5, title: 'Projeto 05', category: 'Conteúdo recorrente', year: '2024', image: `${A}lines-04.webp`, featured: false },
+  { id: 6, title: 'Projeto 06', category: 'Produção mobile', year: '2024', image: `${A}lines-06.webp`, featured: true },
 ]
 
 const services = [
-  ['01', 'Direção', 'Conceito, linguagem visual e direção criativa para transformar uma ideia em imagem.'],
-  ['02', 'Produção', 'Planejamento, equipe, locação, captação e todos os detalhes que fazem o frame acontecer.'],
-  ['03', 'Pós-produção', 'Montagem, tratamento, motion, finalização e construção do ritmo até o último corte.'],
-  ['04', 'Conteúdo', 'Filmes, campanhas, editoriais e peças pensadas para diferentes formatos e telas.'],
+  ['01', 'Produção Mobile', 'Seja um evento, aniversário, after, reel ou vídeo para registrar a vida, capturamos instantes que merecem ser sentidos e lembrados.', 'icon-camera.png'],
+  ['02', 'Mídias Sociais', 'Planejamos, criamos e impulsionamos campanhas completas para sua marca crescer, com estratégia, constância e criatividade.', 'icon-sparks.png'],
+  ['03', 'One Sessions', 'Cobertura mobile de eventos, shows e experiências. Captamos a energia do momento e entregamos vídeos rápidos e impactantes para o mesmo dia.', 'icon-music.png'],
+  ['04', 'Conteúdo Recorrente', 'Geramos presença constante para sua marca através de conteúdo frequente, estratégico e com estética forte. Sua marca viva todos os dias.', 'icon-bolt.png'],
 ]
+
+const clients = ['ALLURE', 'INTERDRINKS', 'CEASA', 'TORK', 'FITOSSÊNCIA', 'VALOR REAL', '180 BPM', 'MAD BRAZIL', 'CONEC TOWN']
 
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === 'Escape' && setMenuOpen(false)
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
-
   const closeMenu = () => setMenuOpen(false)
 
-  return (
-    <>
-      <GlobalStyle />
-      <Page>
-        <Header>
-          <Logo href="#top" onClick={closeMenu} aria-label="ONE FRAME — início">
-            <Symbol src={`${A}logo-symbol-black.png`} alt="" />
-            <LogoText><span>ONE</span><span>FRAME</span></LogoText>
-          </Logo>
-          <Nav aria-label="Navegação principal" $open={menuOpen}>
-            <NavLink href="#projetos" onClick={closeMenu}>Projetos</NavLink>
-            <NavLink href="#sobre" onClick={closeMenu}>Sobre</NavLink>
-            <NavLink href="#servicos" onClick={closeMenu}>Serviços</NavLink>
-            <NavLink href="#contato" onClick={closeMenu}>Contato</NavLink>
-          </Nav>
-          <MenuButton aria-label="Abrir menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
-            <span /><span />
-          </MenuButton>
-        </Header>
+  return <>
+    <GlobalStyle />
+    <Page id="top">
+      <Header>
+        <Logo href="#top" onClick={closeMenu} aria-label="ONE FRAME">
+          <img src={`${A}logo-symbol-black.png`} alt="" />
+          <span>ONE<br />FRAME</span>
+        </Logo>
+        <Nav $open={menuOpen}>
+          <a href="#sobre" onClick={closeMenu}>sobre nós</a>
+          <a href="#servicos" onClick={closeMenu}>serviços</a>
+          <a href="#sessions" onClick={closeMenu}>one sessions</a>
+          <a href="#projetos" onClick={closeMenu}>trabalhos</a>
+        </Nav>
+        <HeaderContact href="#contato" onClick={closeMenu}>FALE CONOSCO</HeaderContact>
+        <MenuButton onClick={() => setMenuOpen(v => !v)} aria-label="Abrir menu"><i/><i/></MenuButton>
+      </Header>
 
-        <main id="top">
-          <Hero>
-            <HeroTexture src={`${A}lines-02.webp`} alt="" aria-hidden="true" />
-            <HeroNoise />
-            <HeroTopline>
-              <span>ESTÚDIO CRIATIVO</span><span>CURITIBA / BRASIL</span><span>© 2025</span>
-            </HeroTopline>
-            <HeroContent>
-              <Eyebrow>Imagem em movimento</Eyebrow>
-              <HeroTitle aria-label="One Frame">
-                <span>ONE</span>
-                <span>FRAME</span>
-              </HeroTitle>
-              <HeroBottom>
-                <HeroCopy>Um frame é um instante.<br />A gente cria o que acontece antes, durante e depois dele.</HeroCopy>
-                <ScrollCue href="#manifesto">↓ <span>explorar</span></ScrollCue>
-              </HeroBottom>
-            </HeroContent>
-            <HeroSymbol src={`${A}logo-symbol-outline.png`} alt="" aria-hidden="true" />
-          </Hero>
+      <main>
+        <Hero>
+          <HeroBg />
+          <Icon className="hero-arrow" src={`${A}icon-arrow.png`} $size={70} $top="18%" $right="8%" />
+          <Icon className="hero-bolt" src={`${A}icon-bolt.png`} $size={72} $top="35%" $right="3%" />
+          <Icon className="hero-crown" src={`${A}icon-crown.png`} $size={92} $bottom="11%" $right="7%" />
+          <HeroInner>
+            <MiniLogo>ONE<br /><b>FRAME</b></MiniLogo>
+            <HeroTitle>CADA<br />FRAME<br /><em>IMPORTA</em></HeroTitle>
+            <HeroText>Studio Mobile onde criamos vídeos<br />que geram presença real.</HeroText>
+            <PrimaryButton href="#contato">FALE CONOSCO <span>↗</span></PrimaryButton>
+          </HeroInner>
+          <PhoneFrame><div className="phone-camera"/><div className="phone-inner"><span>ONE FRAME</span><small>STUDIO MOBILE</small></div></PhoneFrame>
+        </Hero>
 
-          <Ticker aria-label="Manifesto">
-            <TickerTrack>
-              {Array.from({ length: 2 }).map((_, copy) => (
-                <TickerGroup key={copy}>
-                  <b>ONE FRAME</b><i>✦</i><span>IMAGEM</span><i>✦</i><span>MOVIMENTO</span><i>✦</i><span>IDEIA</span><i>✦</i><span>RITMO</span><i>✦</i>
-                </TickerGroup>
-              ))}
-            </TickerTrack>
-          </Ticker>
+        <RedBand><span>01</span><b>ONE FRAME</b><span>STUDIO MOBILE</span><span>CURITIBA / BR</span></RedBand>
 
-          <Manifesto id="manifesto">
-            <ManifestoTexture src={`${A}lines-04.webp`} alt="" aria-hidden="true" />
-            <ManifestoInner>
-              <SectionNumber>01 / MANIFESTO</SectionNumber>
-              <ManifestoTitle>Não fazemos<br /><em>só imagens.</em></ManifestoTitle>
-              <ManifestoText>Construímos atmosferas. Pensamos no enquadramento, no silêncio, no corte, na textura e naquilo que permanece quando o vídeo termina.</ManifestoText>
-              <ManifestoMark>OF</ManifestoMark>
-            </ManifestoInner>
-          </Manifesto>
+        <About id="sobre">
+          <AboutGraphic>
+            <Icon src={`${A}icon-headphones.png`} $size={76} $top="6%" $left="7%" />
+            <Icon src={`${A}icon-dots.png`} $size={60} $top="15%" $right="4%" />
+            <AboutMark>ONE<br /><span>FRA</span><br />ME</AboutMark>
+            <Icon src={`${A}icon-fire.png`} $size={85} $bottom="8%" $left="6%" />
+          </AboutGraphic>
+          <AboutCopy>
+            <SectionLabel>02 / SOBRE NÓS</SectionLabel>
+            <h2>Somos a produtora<br />mobile que decidiu<br /><em>fazer diferente.</em></h2>
+            <p>Nada de vídeos genéricos, nada de conteúdo sem alma. Aqui a gente cria material rápido, com personalidade, estética forte e aquela energia que faz o público parar de rolar o feed.</p>
+            <p>Nosso trabalho é simples: fazer sua marca aparecer do jeito certo, na hora certa.</p>
+            <p>Se você quer conteúdo que prende atenção, gera presença e faz sua marca parecer viva, é aqui que começa.</p>
+            <a href="#contato" className="text-link">Bora dar um upgrade na forma como o mundo vê você? <span>↗</span></a>
+          </AboutCopy>
+        </About>
 
-          <ProjectsSection id="projetos">
-            <SectionHead>
-              <div><SectionNumber>02 / PROJETOS</SectionNumber><SectionTitle>Frames que<br /><em>ficam.</em></SectionTitle></div>
-              <SectionIntro>Uma seleção de trabalhos. A estrutura já está preparada para receber projetos cadastrados pelo painel administrativo.</SectionIntro>
-            </SectionHead>
-            <ProjectGrid>
-              {projects.map((project, index) => (
-                <ProjectCard key={project.id} $featured={index === 0 || index === 3}>
-                  <ProjectImageWrap>
-                    <ProjectImage src={project.image} alt="" />
-                    <ProjectOverlay />
-                    <ProjectIndex>0{index + 1}</ProjectIndex>
-                    <ProjectArrow>↗</ProjectArrow>
-                  </ProjectImageWrap>
-                  <ProjectMeta>
-                    <div><strong>{project.title}</strong><span>{project.category}</span></div>
-                    <small>{project.year}</small>
-                  </ProjectMeta>
-                </ProjectCard>
-              ))}
-            </ProjectGrid>
-            <AllProjects href="#contato">ver todos os projetos <span>→</span></AllProjects>
-          </ProjectsSection>
+        <Services id="servicos">
+          <ServicesHead>
+            <Icon src={`${A}icon-sparks.png`} $size={70} $top="-25px" $left="2%" />
+            <Icon src={`${A}icon-question.png`} $size={50} $top="40px" $right="4%" />
+            <SectionLabel>03 / SERVIÇOS</SectionLabel>
+            <h2>O QUE VOCÊ<br /><em>PROCURA?</em></h2>
+          </ServicesHead>
+          <ServiceGrid>
+            {services.map(([number, title, description, icon]) => <ServiceCard key={number}>
+              <div className="service-top"><span>{number}</span><img src={`${A}${icon}`} alt="" /></div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <span className="plus">+</span>
+            </ServiceCard>)}
+          </ServiceGrid>
+        </Services>
 
-          <TornBreak>
-            <TornPaper src={`${A}tear-white-middle.png`} alt="" aria-hidden="true" />
-            <TornMessage>IDEIAS GANHAM FORMA<br /><strong>QUANDO ENTRAM EM CENA.</strong></TornMessage>
-          </TornBreak>
+        <Sessions id="sessions">
+          <SessionVisual>
+            <img src={`${A}lines-03.webp`} alt="" />
+            <div className="session-overlay" />
+            <Icon src={`${A}icon-camera.png`} $size={150} $bottom="12%" $left="10%" $invert />
+            <span>ONE<br /><b>SESSIONS</b></span>
+          </SessionVisual>
+          <SessionCopy>
+            <SectionLabel>04 / ONE SESSIONS</SectionLabel>
+            <h2>O momento<br /><em>não espera.</em></h2>
+            <p>Cobertura mobile de eventos, shows e experiências. Captamos a energia do momento e entregamos vídeos rápidos e impactantes para o mesmo dia.</p>
+            <PrimaryButton href="#contato">QUERO UMA ONE SESSION <span>↗</span></PrimaryButton>
+          </SessionCopy>
+        </Sessions>
 
-          <AboutSection id="sobre">
-            <AboutTexture src={`${A}tear-black.png`} alt="" aria-hidden="true" />
-            <AboutGrid>
-              <SectionNumber>03 / SOBRE</SectionNumber>
-              <AboutTitle>Somos<br /><em>ONE FRAME.</em></AboutTitle>
-              <AboutCopy>
-                <p>Um estúdio para quem entende que uma boa imagem não é apenas bonita — ela precisa dizer alguma coisa.</p>
-                <p>Trabalhamos entre direção, produção e pós-produção, criando narrativas visuais com uma estética autoral e atenção obsessiva aos detalhes.</p>
-              </AboutCopy>
-              <AboutSymbol src={`${A}logo-symbol-outline.png`} alt="Símbolo gráfico ONE FRAME" />
-            </AboutGrid>
-          </AboutSection>
+        <Clients>
+          <ClientsHead><SectionLabel>05 / CLIENTES</SectionLabel><h2>QUEM JÁ<br /><em>VIVEU O FRAME.</em></h2></ClientsHead>
+          <ClientGrid>{clients.map(client => <span key={client}>{client}</span>)}</ClientGrid>
+          <Icon src={`${A}icon-crown.png`} $size={90} $bottom="-15px" $right="4%" />
+        </Clients>
 
-          <ServicesSection id="servicos">
-            <SectionHead>
-              <div><SectionNumber>04 / O QUE FAZEMOS</SectionNumber><SectionTitle>Do primeiro<br /><em>rabisco</em> ao frame final.</SectionTitle></div>
-              <SectionIntro>Uma operação criativa completa, com cada etapa pensada para preservar a ideia original e elevar a execução.</SectionIntro>
-            </SectionHead>
-            <ServiceList>
-              {services.map(([number, title, description]) => (
-                <ServiceItem key={number}>
-                  <ServiceNumber>{number}</ServiceNumber>
-                  <ServiceTitle>{title}</ServiceTitle>
-                  <ServiceDescription>{description}</ServiceDescription>
-                  <ServiceArrow>↗</ServiceArrow>
-                </ServiceItem>
-              ))}
-            </ServiceList>
-          </ServicesSection>
+        <Projects id="projetos">
+          <ProjectsHead><SectionLabel>06 / NOSSOS TRABALHOS</SectionLabel><h2>NOSSOS<br /><em>TRABALHOS:</em></h2><Icon src={`${A}icon-sparks.png`} $size={65} $top="10px" $right="7%" /></ProjectsHead>
+          <ProjectGrid>{projects.map((project, i) => <article key={project.id} className={project.featured ? 'featured' : ''}>
+            <div className="project-image"><img src={project.image} alt="" /><span>0{i + 1}</span><b>↗</b></div>
+            <div className="project-meta"><strong>{project.title}</strong><span>{project.category}</span><small>{project.year}</small></div>
+          </article>)}</ProjectGrid>
+          <div className="projects-cta"><a href="#contato">VER TODOS OS PROJETOS <span>↗</span></a></div>
+        </Projects>
 
-          <ProcessSection>
-            <ProcessVisual>
-              <img src={`${A}lines-06.webp`} alt="Textura gráfica abstrata" />
-              <ProcessStamp>FRAME<br />BY<br />FRAME</ProcessStamp>
-            </ProcessVisual>
-            <ProcessCopy>
-              <SectionNumber>05 / PROCESSO</SectionNumber>
-              <h2>Menos ruído.<br /><em>Mais intenção.</em></h2>
-              <p>Descobrimos o que a história precisa, definimos a linguagem, produzimos com precisão e finalizamos sem perder a espontaneidade.</p>
-              <ol>
-                <li><b>01</b><span>Descoberta</span></li>
-                <li><b>02</b><span>Direção</span></li>
-                <li><b>03</b><span>Produção</span></li>
-                <li><b>04</b><span>Finalização</span></li>
-              </ol>
-            </ProcessCopy>
-          </ProcessSection>
+        <Contact id="contato">
+          <Icon src={`${A}icon-shaka.png`} $size={110} $top="12%" $left="5%" />
+          <Icon src={`${A}icon-exclamation.png`} $size={80} $top="9%" $right="8%" />
+          <Icon src={`${A}icon-music.png`} $size={90} $bottom="10%" $right="8%" />
+          <SectionLabel>07 / FALE CONOSCO</SectionLabel>
+          <h2>VAMOS FAZER<br /><em>ACONTECER?</em></h2>
+          <p>Tem uma ideia, evento, marca ou história para colocar em movimento?</p>
+          <PrimaryButton href="mailto:hello@oneframe.com.br">FALE COM A GENTE <span>↗</span></PrimaryButton>
+        </Contact>
+      </main>
 
-          <ContactSection id="contato">
-            <ContactTexture src={`${A}lines-01.webp`} alt="" aria-hidden="true" />
-            <ContactInner>
-              <SectionNumber>06 / CONTATO</SectionNumber>
-              <ContactTitle>Tem uma ideia<br /><em>na cabeça?</em></ContactTitle>
-              <ContactText>Vamos colocar um frame depois do outro.</ContactText>
-              <ContactButton href="mailto:hello@oneframe.com.br">fale com a gente <span>↗</span></ContactButton>
-            </ContactInner>
-          </ContactSection>
-        </main>
-
-        <Footer>
-          <FooterTop>
-            <FooterBrand><span>ONE</span><span>FRAME</span></FooterBrand>
-            <FooterLinks>
-              <a href="#projetos">Projetos</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="mailto:hello@oneframe.com.br">E-mail</a>
-            </FooterLinks>
-            <FooterInfo>Curitiba — PR<br />Brasil</FooterInfo>
-          </FooterTop>
-          <FooterBottom><span>ONE FRAME © {new Date().getFullYear()}</span><span>feito para causar impacto.</span><a href="#top">↑ topo</a></FooterBottom>
-        </Footer>
-      </Page>
-    </>
-  )
+      <Footer><div><b>ONE<br />FRAME</b><span>Studio Mobile onde criamos vídeos<br />que geram presença real.</span></div><nav><a href="#sobre">sobre</a><a href="#servicos">serviços</a><a href="#projetos">trabalhos</a><a href="#contato">contato</a></nav><small>© {new Date().getFullYear()} ONE FRAME<br />Curitiba — Brasil</small></Footer>
+    </Page>
+  </>
 }
 
-const Page = styled.div`overflow-x:hidden;background:#050505;`
-const Header = styled.header`position:fixed;z-index:50;top:0;left:0;width:100%;height:78px;padding:16px 3.5vw;display:flex;align-items:center;justify-content:space-between;color:#fff;mix-blend-mode:difference;`
-const Logo = styled.a`display:flex;align-items:center;gap:10px;position:relative;z-index:2;`
-const Symbol = styled.img`width:30px;height:30px;object-fit:contain;filter:invert(1);`
-const LogoText = styled.span`font-size:12px;font-weight:900;line-height:.83;letter-spacing:-.07em;display:grid;gap:1px;`
-const Nav = styled.nav<{ $open:boolean }>`display:flex;gap:32px;align-items:center;@media(max-width:760px){position:fixed;inset:0;background:#050505;color:#fff;display:${p=>p.$open?'flex':'none'};flex-direction:column;justify-content:center;gap:24px;mix-blend-mode:normal}.open{display:flex}`
-const NavLink = styled.a`font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;transition:opacity .2s;&:hover{opacity:.5}`
-const MenuButton = styled.button`display:none;background:none;border:0;color:inherit;width:34px;height:34px;position:relative;z-index:3;@media(max-width:760px){display:block}span{position:absolute;left:6px;width:22px;height:1px;background:currentColor;transition:.25s}span:first-child{top:13px}span:last-child{top:20px}`
-const Hero = styled.section`min-height:100svh;position:relative;overflow:hidden;background:#050505;display:flex;align-items:center;`
-const HeroTexture = styled.img`position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;opacity:.27;filter:contrast(1.2);animation:drift 18s ease-in-out infinite;mix-blend-mode:screen;`
-const HeroNoise = styled.div`position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) .6px,transparent .7px);background-size:5px 5px;opacity:.16;mix-blend-mode:screen;`
-const HeroTopline = styled.div`position:absolute;top:96px;left:3.5vw;right:3.5vw;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;`
-const HeroContent = styled.div`position:relative;z-index:2;width:min(1380px,93vw);margin:0 auto;padding-top:55px;`
-const Eyebrow = styled.p`margin:0 0 18px;font-size:10px;text-transform:uppercase;letter-spacing:.2em;`
-const HeroTitle = styled.h1`font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(92px,18.2vw,290px);line-height:.73;letter-spacing:-.085em;text-transform:uppercase;margin:0;display:grid;transform:scaleX(.92);transform-origin:left center;span:last-child{margin-left:7.5vw}`
-const HeroBottom = styled.div`display:flex;align-items:end;justify-content:space-between;margin-top:5.5vw;padding-left:5vw;max-width:1050px;`
-const HeroCopy = styled.p`font-size:clamp(15px,1.5vw,22px);line-height:1.25;margin:0;max-width:390px;letter-spacing:-.02em;`
-const ScrollCue = styled.a`font-size:11px;text-transform:uppercase;letter-spacing:.12em;display:flex;gap:8px;align-items:center;span{opacity:.6}@media(max-width:600px){display:none}`
-const HeroSymbol = styled.img`position:absolute;width:clamp(160px,18vw,290px);right:5vw;bottom:4vw;opacity:.75;animation:float 8s ease-in-out infinite;filter:invert(1);`
-const Ticker = styled.div`background:#f2f1ed;color:#050505;overflow:hidden;border-block:1px solid #050505;`
-const TickerTrack = styled.div`display:flex;width:max-content;animation:marquee 24s linear infinite;`
-const TickerGroup = styled.div`display:flex;align-items:center;gap:30px;padding:12px 24px;white-space:nowrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;i{font-style:normal;font-size:14px}`
-const Manifesto = styled.section`position:relative;min-height:760px;display:flex;align-items:center;overflow:hidden;background:#090909;`
-const ManifestoTexture = styled.img`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;filter:invert(1);`
-const ManifestoInner = styled.div`position:relative;width:min(1240px,88vw);margin:auto;padding:110px 0;display:grid;grid-template-columns:1fr 2fr;gap:30px;@media(max-width:760px){grid-template-columns:1fr;padding:90px 0}`
-const SectionNumber = styled.span`font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.6;`
-const ManifestoTitle = styled.h2`grid-column:2;margin:0;font-family:Impact,'Arial Black',sans-serif;font-size:clamp(64px,10vw,150px);line-height:.8;letter-spacing:-.06em;text-transform:uppercase;em{font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.08em}@media(max-width:760px){grid-column:auto}`
-const ManifestoText = styled.p`grid-column:2;max-width:550px;font-size:clamp(18px,2vw,28px);line-height:1.1;letter-spacing:-.025em;margin:50px 0 0 18%;@media(max-width:760px){grid-column:auto;margin:20px 0 0}`
-const ManifestoMark = styled.div`position:absolute;right:0;bottom:40px;font-size:11px;letter-spacing:.2em;opacity:.45;`
-const ProjectsSection = styled.section`background:#f1f0eb;color:#050505;padding:130px 3.5vw 150px;`
-const SectionHead = styled.div`width:min(1240px,92vw);margin:0 auto 90px;display:grid;grid-template-columns:1.4fr .6fr;gap:80px;align-items:end;@media(max-width:800px){grid-template-columns:1fr;gap:30px;margin-bottom:55px}`
-const SectionTitle = styled.h2`font-family:Impact,'Arial Black',sans-serif;text-transform:uppercase;font-size:clamp(65px,8.5vw,125px);line-height:.8;letter-spacing:-.06em;margin:20px 0 0;em{font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.08em}`
-const SectionIntro = styled.p`font-size:15px;line-height:1.3;max-width:330px;margin:0 0 5px;`
-const ProjectGrid = styled.div`width:min(1240px,92vw);margin:auto;display:grid;grid-template-columns:repeat(12,1fr);gap:65px 24px;`
-const ProjectCard = styled.article<{ $featured:boolean }>`grid-column:span 5;${p=>p.$featured?'grid-column:span 7;':''}@media(max-width:800px){grid-column:span 12!important}`
-const ProjectImageWrap = styled.div`aspect-ratio:1.45;position:relative;overflow:hidden;background:#111;`
-const ProjectImage = styled.img`width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;&:hover{transform:scale(1.06);filter:grayscale(.6) contrast(1.1)}`
-const ProjectOverlay = styled.div`position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.25),transparent 45%,rgba(0,0,0,.15));pointer-events:none;`
-const ProjectIndex = styled.span`position:absolute;top:16px;left:16px;color:#fff;font-size:10px;letter-spacing:.15em;`
-const ProjectArrow = styled.span`position:absolute;right:16px;bottom:12px;color:#fff;font-size:24px;`
-const ProjectMeta = styled.div`display:flex;justify-content:space-between;gap:20px;padding-top:14px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #050505;padding-bottom:10px;strong,span{display:block}span{opacity:.55;margin-top:5px;font-size:9px}small{font-size:9px;opacity:.55}`
-const AllProjects = styled.a`display:block;width:min(1240px,92vw);margin:85px auto 0;font-size:11px;text-transform:uppercase;letter-spacing:.14em;border-bottom:1px solid #050505;padding-bottom:12px;width:max-content;margin-left:auto;margin-right:auto;span{margin-left:20px}`
-const TornBreak = styled.section`min-height:260px;background:#f1f0eb;color:#050505;position:relative;overflow:hidden;display:grid;place-items:center;`
-const TornPaper = styled.img`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;`
-const TornMessage = styled.p`position:relative;z-index:1;text-align:center;font-family:Impact,'Arial Black',sans-serif;font-size:clamp(34px,5vw,74px);line-height:.83;letter-spacing:-.05em;margin:0;strong{font-family:Georgia,serif;font-weight:400;letter-spacing:-.07em}`
-const AboutSection = styled.section`position:relative;background:#050505;color:#f1f0eb;overflow:hidden;min-height:780px;`
-const AboutTexture = styled.img`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;`
-const AboutGrid = styled.div`position:relative;width:min(1240px,92vw);margin:auto;padding:140px 0;display:grid;grid-template-columns:.7fr 1.3fr 1fr;gap:40px;@media(max-width:800px){grid-template-columns:1fr;padding:100px 0;gap:25px}`
-const AboutTitle = styled.h2`font-family:Impact,'Arial Black',sans-serif;font-size:clamp(72px,9vw,140px);line-height:.78;letter-spacing:-.06em;text-transform:uppercase;margin:0;grid-column:2;em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.08em;text-transform:none}@media(max-width:800px){grid-column:auto}`
-const AboutCopy = styled.div`grid-column:2/4;max-width:620px;margin-left:15%;font-size:clamp(17px,1.7vw,23px);line-height:1.18;letter-spacing:-.025em;p{margin:0 0 18px}@media(max-width:800px){grid-column:auto;margin-left:0}`
-const AboutSymbol = styled.img`position:absolute;right:0;bottom:70px;width:180px;opacity:.5;filter:invert(1);@media(max-width:800px){position:relative;right:auto;bottom:auto;width:110px;margin-left:auto}`
-const ServicesSection = styled.section`background:#f1f0eb;color:#050505;padding:130px 3.5vw 150px;`
-const ServiceList = styled.div`width:min(1240px,92vw);margin:auto;border-top:1px solid #050505;`
-const ServiceItem = styled.article`display:grid;grid-template-columns:80px 1fr 1.1fr 50px;gap:30px;align-items:center;padding:30px 0;border-bottom:1px solid #050505;@media(max-width:800px){grid-template-columns:45px 1fr 30px;gap:12px}.service-description{grid-column:auto}`
-const ServiceNumber = styled.span`font-size:10px;letter-spacing:.15em;opacity:.5;`
-const ServiceTitle = styled.h3`font-family:Impact,'Arial Black',sans-serif;font-size:clamp(35px,4.5vw,65px);text-transform:uppercase;letter-spacing:-.05em;margin:0;`
-const ServiceDescription = styled.p`font-size:14px;line-height:1.25;max-width:430px;margin:0;@media(max-width:800px){grid-column:2}`
-const ServiceArrow = styled.span`font-size:22px;text-align:right;`
-const ProcessSection = styled.section`background:#111;color:#f1f0eb;display:grid;grid-template-columns:1fr 1fr;min-height:720px;@media(max-width:800px){grid-template-columns:1fr}`
-const ProcessVisual = styled.div`position:relative;min-height:600px;overflow:hidden;img{width:100%;height:100%;min-height:600px;object-fit:cover;filter:grayscale(1);opacity:.7}`
-const ProcessStamp = styled.div`position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);font-family:Impact,'Arial Black',sans-serif;font-size:clamp(55px,7vw,110px);line-height:.72;text-align:center;mix-blend-mode:screen;opacity:.85;`
-const ProcessCopy = styled.div`padding:120px 8vw 110px;display:flex;flex-direction:column;justify-content:center;h2{font-family:Impact,'Arial Black',sans-serif;text-transform:uppercase;font-size:clamp(65px,7vw,105px);line-height:.78;letter-spacing:-.06em;margin:25px 0 35px}em{font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.08em}p{max-width:470px;font-size:18px;line-height:1.2;margin:0 0 55px}`
-const ProcessCopyOl = styled.ol``
-const ContactSection = styled.section`min-height:760px;position:relative;overflow:hidden;display:flex;align-items:center;background:#f1f0eb;color:#050505;`
-const ContactTexture = styled.img`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;mix-blend-mode:multiply;filter:grayscale(1);`
-const ContactInner = styled.div`position:relative;width:min(1240px,92vw);margin:auto;padding:140px 0;`
-const ContactTitle = styled.h2`font-family:Impact,'Arial Black',sans-serif;font-size:clamp(80px,12vw,180px);line-height:.75;letter-spacing:-.07em;text-transform:uppercase;margin:25px 0 40px;em{font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.09em}`
-const ContactText = styled.p`font-size:20px;margin:0 0 30px;`
-const ContactButton = styled.a`display:inline-flex;gap:35px;align-items:center;border:1px solid #050505;padding:15px 18px;text-transform:uppercase;font-size:10px;letter-spacing:.15em;transition:background .2s,color .2s;&:hover{background:#050505;color:#f1f0eb}span{font-size:18px}`
-const Footer = styled.footer`background:#050505;color:#f1f0eb;padding:70px 3.5vw 20px;`
-const FooterTop = styled.div`display:grid;grid-template-columns:1.5fr 1fr .5fr;gap:40px;align-items:start;padding-bottom:100px;@media(max-width:700px){grid-template-columns:1fr;padding-bottom:70px}`
-const FooterBrand = styled.div`font-family:Impact,'Arial Black',sans-serif;font-size:clamp(60px,9vw,130px);line-height:.7;letter-spacing:-.07em;display:grid;`
-const FooterLinks = styled.nav`display:grid;gap:10px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;a{opacity:.7;transition:opacity .2s}&:hover a{opacity:.3}& a:hover{opacity:1}`
-const FooterInfo = styled.p`font-size:11px;line-height:1.5;margin:0;opacity:.6;text-transform:uppercase;letter-spacing:.1em;`
-const FooterBottom = styled.div`border-top:1px solid #333;padding-top:16px;display:grid;grid-template-columns:1fr 1fr auto;font-size:9px;text-transform:uppercase;letter-spacing:.12em;opacity:.5;gap:20px;@media(max-width:600px){grid-template-columns:1fr 1fr;&:last-child{grid-column:auto}}`
+const Page = styled.div`background:#f3f0e9;color:#080808;overflow:hidden;`
+const Header = styled.header`position:fixed;z-index:100;top:0;left:0;width:100%;height:76px;padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;background:rgba(239,24,18,.96);color:#fff;border-bottom:2px solid #080808;`
+const Logo = styled.a`display:flex;align-items:center;gap:8px;font-family:Impact,'Arial Black',sans-serif;font-size:17px;line-height:.78;letter-spacing:-.05em;text-transform:uppercase;img{width:35px;height:35px;object-fit:contain;filter:invert(1) brightness(10);}`
+const Nav = styled.nav<{ $open:boolean }>`display:flex;gap:34px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;a:hover{text-decoration:underline}@media(max-width:800px){position:fixed;top:76px;left:0;right:0;background:#080808;padding:25px 5vw;display:${p=>p.$open?'flex':'none'};flex-direction:column;gap:18px;font-size:15px;}`
+const HeaderContact = styled.a`border:2px solid #fff;border-radius:999px;padding:9px 17px;font-size:10px;font-weight:900;letter-spacing:.08em;@media(max-width:800px){display:none}`
+const MenuButton = styled.button`display:none;background:none;border:0;padding:10px;@media(max-width:800px){display:grid;gap:5px}i{display:block;width:26px;height:3px;background:#fff}`
+const Hero = styled.section`min-height:820px;background:#ef1b14;color:#fff;position:relative;overflow:hidden;padding:140px 5vw 80px;display:flex;align-items:center;@media(max-width:900px){flex-direction:column;align-items:flex-start;padding-top:120px}`
+const HeroBg = styled.div`position:absolute;inset:0;background-image:radial-gradient(circle at 20% 70%,rgba(0,0,0,.09) 0 8%,transparent 9%),radial-gradient(circle at 80% 30%,rgba(0,0,0,.08) 0 11%,transparent 12%);opacity:.8;`
+const HeroInner = styled.div`position:relative;z-index:2;width:47%;min-width:430px;@media(max-width:900px){width:100%;min-width:0}`
+const MiniLogo = styled.div`font-family:Impact,'Arial Black',sans-serif;font-size:22px;line-height:.72;margin-bottom:24px;transform:rotate(-2deg);b{font-size:17px}`
+const HeroTitle = styled.h1`font-family:Impact,'Arial Black',sans-serif;font-size:clamp(82px,10vw,155px);line-height:.78;letter-spacing:-.07em;margin:0;text-transform:uppercase;text-shadow:5px 5px 0 rgba(0,0,0,.1);em{font-style:normal;color:#080808}`
+const HeroText = styled.p`font-size:14px;line-height:1.2;margin:30px 0 18px;font-weight:700;`
+const PrimaryButton = styled.a`display:inline-flex;align-items:center;gap:24px;background:#080808;color:#fff;border:2px solid #080808;border-radius:999px;padding:13px 22px;font-size:10px;font-weight:900;letter-spacing:.08em;box-shadow:0 7px 0 rgba(0,0,0,.12);transition:.2s;&:hover{transform:translateY(-3px);box-shadow:0 10px 0 rgba(0,0,0,.12)}span{font-size:16px}`
+const PhoneFrame = styled.div`position:absolute;z-index:2;right:6%;top:18%;width:min(49vw,620px);height:min(32vw,390px);background:#f4f2ec;border:4px solid #080808;border-radius:35px;box-shadow:15px 20px 0 rgba(0,0,0,.1);transform:rotate(-1deg);overflow:hidden;@media(max-width:900px){position:relative;right:auto;top:auto;width:90%;height:300px;margin:50px auto 0}.phone-camera{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:20px;height:70px;border-radius:12px;background:#080808}.phone-inner{position:absolute;inset:15px;background:#080808;color:#ef1b14;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Impact,'Arial Black';font-size:clamp(25px,4vw,65px);line-height:.75;letter-spacing:-.06em}.phone-inner small{font-family:Arial;font-size:9px;letter-spacing:.25em;margin-top:18px;color:#fff}`
+const RedBand = styled.div`background:#ef1b14;color:#080808;display:flex;justify-content:space-between;gap:20px;padding:15px 5vw;border-block:2px solid #080808;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;@media(max-width:600px){flex-wrap:wrap}`
+const About = styled.section`display:grid;grid-template-columns:1fr 1.25fr;min-height:720px;background:#ef1b14;color:#080808;border-bottom:2px solid #080808;@media(max-width:800px){grid-template-columns:1fr}`
+const AboutGraphic = styled.div`position:relative;min-height:600px;background:#080808;overflow:hidden;&:after{content:'';position:absolute;inset:0;background:url('${A}lines-01.webp') center/cover;opacity:.25;mix-blend-mode:screen}.icon{z-index:2}`
+const AboutMark = styled.div`position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-5deg);font-family:Impact,'Arial Black',sans-serif;font-size:clamp(90px,12vw,180px);line-height:.65;text-align:center;color:#fff;letter-spacing:-.09em;span{color:#ef1b14}`
+const AboutCopy = styled.div`padding:100px 8vw 90px;max-width:800px;h2{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(55px,6vw,90px);line-height:.82;letter-spacing:-.06em;text-transform:uppercase;margin:22px 0 38px}em{font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.08em}p{font-size:16px;line-height:1.25;max-width:560px}.text-link{display:block;margin-top:35px;font-weight:900;font-size:13px;text-decoration:underline}.text-link span{margin-left:8px}`
+const SectionLabel = styled.span`font-size:9px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;opacity:.65;`
+const Icon = styled.img<{ $size:number;$top?:string;$right?:string;$bottom?:string;$left?:string;$invert?:boolean }>`position:absolute;width:${p=>p.$size}px;height:auto;top:${p=>p.$top||'auto'};right:${p=>p.$right||'auto'};bottom:${p=>p.$bottom||'auto'};left:${p=>p.$left||'auto'};z-index:3;object-fit:contain;${p=>p.$invert?'filter:invert(1);':''}`
+const Services = styled.section`position:relative;background:#080808;color:#fff;padding:110px 5vw 125px;border-bottom:2px solid #ef1b14;`
+const ServicesHead = styled.div`position:relative;text-align:center;margin:0 auto 65px;h2{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(62px,8vw,115px);line-height:.78;letter-spacing:-.07em;margin:20px 0;text-transform:uppercase}em{font-family:Georgia,serif;font-weight:400;text-transform:none}`
+const ServiceGrid = styled.div`display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1250px;margin:auto;@media(max-width:1000px){grid-template-columns:repeat(2,1fr)}@media(max-width:600px){grid-template-columns:1fr}`
+const ServiceCard = styled.article`position:relative;background:linear-gradient(145deg,#2a2928,#151515);min-height:310px;padding:22px;border:1px solid rgba(255,255,255,.05);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.25);overflow:hidden;.service-top{display:flex;justify-content:space-between;align-items:start;color:#ef1b14;font-size:11px;font-weight:900}.service-top img{width:46px;height:46px;object-fit:contain;filter:invert(19%) sepia(99%) saturate(4857%) hue-rotate(356deg) brightness(97%) contrast(91%)}h3{font-family:Impact,'Arial Black',sans-serif;text-transform:uppercase;font-size:35px;line-height:.85;letter-spacing:-.05em;margin:55px 0 20px}p{font-size:12px;line-height:1.25;max-width:260px;color:#f3f0e9}.plus{position:absolute;right:20px;bottom:14px;color:#ef1b14;font-size:27px}`
+const Sessions = styled.section`display:grid;grid-template-columns:1fr 1fr;background:#f3f0e9;color:#080808;min-height:650px;@media(max-width:800px){grid-template-columns:1fr}`
+const SessionVisual = styled.div`position:relative;min-height:650px;overflow:hidden;background:#ef1b14;img{width:100%;height:100%;object-fit:cover;filter:contrast(1.15);opacity:.7}.session-overlay{position:absolute;inset:0;background:#ef1b14;mix-blend-mode:multiply;opacity:.65}span{position:absolute;left:10%;top:15%;z-index:2;font-family:Impact,'Arial Black';font-size:clamp(60px,9vw,130px);line-height:.7;letter-spacing:-.08em;color:#fff;transform:rotate(-4deg)}b{color:#080808}`
+const SessionCopy = styled.div`padding:100px 9vw;display:flex;flex-direction:column;justify-content:center;h2{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(65px,7vw,105px);line-height:.78;letter-spacing:-.07em;text-transform:uppercase;margin:22px 0 35px}em{font-family:Georgia,serif;font-weight:400;text-transform:none}p{font-size:17px;line-height:1.25;max-width:480px;margin:0 0 35px}`
+const Clients = styled.section`position:relative;background:#ef1b14;color:#080808;padding:90px 6vw 110px;border-block:2px solid #080808;overflow:hidden;`
+const ClientsHead = styled.div`text-align:center;h2{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(58px,7vw,100px);line-height:.78;letter-spacing:-.07em;margin:20px 0 65px}em{font-family:Georgia,serif;font-weight:400;text-transform:none}`
+const ClientGrid = styled.div`max-width:1050px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:34px 70px;align-items:center;text-align:center;font-family:Impact,'Arial Black',sans-serif;font-size:clamp(17px,2vw,28px);letter-spacing:-.03em;@media(max-width:600px){grid-template-columns:repeat(2,1fr);gap:25px}`
+const Projects = styled.section`position:relative;background:#080808;color:#fff;padding:120px 5vw 150px;`
+const ProjectsHead = styled.div`position:relative;text-align:center;margin-bottom:75px;h2{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(70px,9vw,125px);line-height:.75;letter-spacing:-.07em;margin:20px 0;text-transform:uppercase}em{font-family:Georgia,serif;font-weight:400;text-transform:none}`
+const ProjectGrid = styled.div`max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(12,1fr);gap:55px 20px;article{grid-column:span 5}.featured{grid-column:span 7}.project-image{position:relative;aspect-ratio:1.45;overflow:hidden;border:1px solid #444;background:#111}.project-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25);transition:.6s}.project-image:hover img{filter:grayscale(.1);transform:scale(1.05)}.project-image span{position:absolute;top:12px;left:14px;font-size:10px;letter-spacing:.15em}.project-image b{position:absolute;right:14px;bottom:8px;color:#ef1b14;font-size:25px}.project-meta{display:grid;grid-template-columns:1fr auto;padding:12px 0;border-bottom:1px solid #444;text-transform:uppercase;font-size:10px}.project-meta strong{font-size:12px}.project-meta span{grid-column:1;color:#aaa;margin-top:4px}.project-meta small{grid-row:1/3;grid-column:2;color:#aaa}@media(max-width:800px){article,.featured{grid-column:span 12!important}}`
+const Contact = styled.section`position:relative;min-height:720px;background:#ef1b14;color:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5vw;overflow:hidden;border-top:2px solid #080808;h2{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(78px,11vw,160px);line-height:.72;letter-spacing:-.08em;margin:22px 0 30px;text-transform:uppercase}em{font-family:Georgia,serif;font-weight:400;text-transform:none}.PrimaryButton{background:#fff;color:#080808;border-color:#080808}.PrimaryButton:hover{background:#080808;color:#fff}.p{max-width:450px}`
+const Footer = styled.footer`background:#080808;color:#fff;padding:55px 5vw 25px;display:grid;grid-template-columns:1.5fr 1fr auto;gap:40px;border-top:2px solid #ef1b14;footer{font-size:11px}b{font-family:Impact,'Arial Black';font-size:38px;line-height:.7;color:#ef1b14}span{display:block;margin-top:20px;color:#aaa;font-size:11px;line-height:1.3}nav{display:flex;flex-direction:column;gap:10px;text-transform:uppercase;font-size:10px;font-weight:700}nav a:hover{color:#ef1b14}small{font-size:9px;color:#888;line-height:1.5;text-align:right}@media(max-width:700px){grid-template-columns:1fr;small{text-align:left}}`
