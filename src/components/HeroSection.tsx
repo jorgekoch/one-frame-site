@@ -1,17 +1,32 @@
 import styled from "styled-components";
 
 const A = "/assets/";
-const RED = "#ef1b14";
-const BLACK = "#080808";
-const PAPER = "#f7f5ef";
 
 export function HeroSection() {
   return (
     <Hero>
       <PaperTexture aria-hidden="true" />
-      <HeroIcon src={`${A}icon-arrow.png`} $top="17%" $right="8%" alt="" aria-hidden="true" />
-      <HeroIcon src={`${A}icon-bolt.png`} $top="34%" $right="3%" alt="" aria-hidden="true" />
-      <HeroIcon src={`${A}icon-crown.png`} $bottom="9%" $right="7%" alt="" aria-hidden="true" />
+      <HeroIcon
+        src={`${A}icon-arrow.png`}
+        $top="17%"
+        $right="8%"
+        alt=""
+        aria-hidden="true"
+      />
+      <HeroIcon
+        src={`${A}icon-bolt.png`}
+        $top="34%"
+        $right="3%"
+        alt=""
+        aria-hidden="true"
+      />
+      <HeroIcon
+        src={`${A}icon-crown.png`}
+        $bottom="9%"
+        $right="7%"
+        alt=""
+        aria-hidden="true"
+      />
       <HeroCopy>
         <MiniLogo>
           ONE
@@ -66,7 +81,7 @@ const Hero = styled.section`
   align-items: center;
   gap: 3vw;
   padding: 150px 5vw 80px;
-  background: ${PAPER};
+  background: var(--color-paper);
   overflow: hidden;
 
   @media (max-width: 900px) {
@@ -122,7 +137,7 @@ const MiniLogo = styled.div`
 
   b {
     font-size: 17px;
-    color: ${RED};
+    color: var(--color-red);
   }
 `;
 
@@ -138,7 +153,7 @@ const HeroTitle = styled.h1`
 
   em {
     font-style: normal;
-    color: ${RED};
+    color: var(--color-red);
   }
 `;
 
@@ -154,24 +169,26 @@ const CTA = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 24px;
-  background: ${RED};
+  background: var(--color-red);
   color: #fff;
-  border: 2px solid ${BLACK};
+  border: 2px solid var(--color-black);
   border-radius: 999px;
   padding: 13px 22px;
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.08em;
-  box-shadow: 4px 5px 0 ${BLACK};
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 4px 5px 0 var(--color-black);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 7px 8px 0 ${BLACK};
+    box-shadow: 7px 8px 0 var(--color-black);
   }
 
   &:focus-visible {
-    outline: 3px solid ${BLACK};
+    outline: 3px solid var(--color-black);
     outline-offset: 5px;
   }
 
@@ -186,7 +203,7 @@ const HeroCard = styled.div`
   width: min(48vw, 650px);
   height: min(34vw, 430px);
   background: #fff;
-  border: 4px solid ${BLACK};
+  border: 4px solid var(--color-black);
   border-radius: 28px;
   padding: 12px;
   box-shadow: 12px 14px 0 rgba(239, 27, 20, 0.28);
@@ -207,7 +224,7 @@ const ScrollCue = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: ${BLACK};
+  color: var(--color-black);
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.16em;
@@ -225,7 +242,7 @@ const ScrollCue = styled.a`
   }
 
   &:focus-visible {
-    outline: 3px solid ${BLACK};
+    outline: 3px solid var(--color-black);
     outline-offset: 5px;
   }
 `;
@@ -242,7 +259,7 @@ const CardTop = styled.div`
 const CardScreen = styled.div`
   position: relative;
   height: calc(100% - 25px);
-  background: ${RED};
+  background: var(--color-red);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -256,7 +273,7 @@ const CardVideo = styled.iframe`
   width: 100%;
   height: 100%;
   border: 0;
-  background: ${RED};
+  background: var(--color-red);
 `;
 
 const CardLines = styled.div`
