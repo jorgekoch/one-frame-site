@@ -16,7 +16,14 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
           <br />
           <em>TRABALHOS:</em>
         </h2>
-        <Icon src={`${A}icon-sparks.png`} $top="10px" $right="7%" />
+        <Icon
+          src={`${A}icon-sparks.png`}
+          $top="10px"
+          $right="7%"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+        />
       </ProjectsHead>
       <ProjectGrid>
         {projects.map((project) => (
@@ -25,9 +32,11 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
               <img
                 src={project.image}
                 alt={`Textura gráfica do ${project.title}`}
+                loading="lazy"
+                decoding="async"
               />
               <span>{project.id}</span>
-              <b>↗</b>
+              <b aria-hidden="true">↗</b>
             </ProjectImage>
             <ProjectMeta>
               <strong>{project.title}</strong>
@@ -38,7 +47,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
         ))}
       </ProjectGrid>
       <ProjectsCTA href="#contato">
-        VER TODOS OS PROJETOS <span>↗</span>
+        VER TODOS OS PROJETOS <span aria-hidden="true">↗</span>
       </ProjectsCTA>
     </Projects>
   );
@@ -106,7 +115,7 @@ const ProjectImage = styled.div`
   border: 2px solid ${BLACK};
   background: ${BLACK};
   box-shadow: 6px 7px 0 ${RED};
-  transition: 0.25s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 9px 10px 0 ${BLACK};
@@ -124,6 +133,7 @@ const ProjectImage = styled.div`
     background: ${RED};
     mix-blend-mode: multiply;
     opacity: 0.25;
+    pointer-events: none;
   }
   span,
   b {
