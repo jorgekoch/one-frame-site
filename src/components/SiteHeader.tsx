@@ -17,30 +17,41 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
     };
 
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+    };
   }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 801px)");
 
     const handleChange = () => {
-      if (mediaQuery.matches) setMenuOpen(false);
+      if (mediaQuery.matches) {
+        setMenuOpen(false);
+      }
     };
 
     handleChange();
+
     mediaQuery.addEventListener("change", handleChange);
 
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
   }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -50,6 +61,7 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
 
   return (
     <Header>
+      {/* Papel para desktop */}
       <HeaderPaper
         src={`${A}papelrasgado.png`}
         alt=""
@@ -57,6 +69,9 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
         fetchPriority="high"
         decoding="async"
       />
+
+      {/* Papel específico para mobile */}
+      <MobileHeaderPaper aria-hidden="true" />
 
       <HeaderContent>
         <Logo href="#top" onClick={closeMenu} aria-label="One Frame">
@@ -128,14 +143,21 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
   );
 }
 
+/* =========================================================
+   HEADER
+========================================================= */
+
 const Header = styled.header`
   position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100px;
+
   background: transparent;
+
   overflow: visible;
 
   @media (max-width: 800px) {
@@ -143,33 +165,106 @@ const Header = styled.header`
   }
 `;
 
+/* =========================================================
+   PAPEL — DESKTOP
+========================================================= */
+
 const HeaderPaper = styled.img`
   position: absolute;
+
   z-index: 1;
+
   top: clamp(-260px, -14vw, -80px);
   left: 0;
+
   width: 100%;
   height: auto;
+
   display: block;
+
   pointer-events: none;
   user-select: none;
 
   @media (max-width: 800px) {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 92px;
-    object-fit: cover;
-    object-position: center bottom;
+    display: none;
   }
 `;
 
+/* =========================================================
+   PAPEL — MOBILE
+========================================================= */
+
+const MobileHeaderPaper = styled.div`
+  display: none;
+
+  @media (max-width: 800px) {
+    display: block;
+
+    position: absolute;
+
+    z-index: 1;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 82px;
+
+    overflow: hidden;
+
+    pointer-events: none;
+    user-select: none;
+
+    /*
+      O arquivo original possui uma área clara
+      antes da faixa preta.
+
+      Usamos a própria imagem como background
+      e deslocamos ela para cima para cortar
+      essa sobra.
+    */
+    background-image: url("/assets/papelrasgado.png");
+
+    background-repeat: no-repeat;
+
+    /*
+      A largura da imagem acompanha exatamente
+      a largura da tela.
+    */
+    background-size: 100% auto;
+
+    /*
+      -8px corta a sobra superior sem alterar
+      a posição do header.
+    */
+    background-position: center -8px;
+  }
+
+  @media (max-width: 375px) {
+    /*
+      Telas muito estreitas precisam de um
+      pequeno ajuste adicional.
+    */
+    height: 82px;
+
+    background-position: center -9px;
+  }
+`;
+
+/* =========================================================
+   CONTEÚDO DO HEADER
+========================================================= */
+
 const HeaderContent = styled.div`
   position: relative;
+
   z-index: 10;
+
   width: 100%;
   height: 100%;
+
   padding: 0 4vw 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,27 +274,40 @@ const HeaderContent = styled.div`
   }
 `;
 
+/* =========================================================
+   LOGO
+========================================================= */
+
 const Logo = styled.a`
   display: flex;
   align-items: center;
+
   gap: 10px;
+
   font-family: var(--font-display);
   font-size: 22px;
   line-height: 0.78;
+
   letter-spacing: -0.05em;
+
   color: var(--color-white);
+
   position: relative;
+
   z-index: 30;
 
   img.logo-mark {
     display: block;
+
     width: 46px;
     height: 46px;
+
     object-fit: contain;
   }
 
   @media (max-width: 800px) {
     gap: 7px;
+
     font-size: 17px;
 
     img.logo-mark {
@@ -209,19 +317,31 @@ const Logo = styled.a`
   }
 `;
 
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
 const Nav = styled.nav<{ $open: boolean }>`
   display: flex;
+
   align-items: center;
+
   gap: 38px;
+
   font-size: 12px;
   font-weight: 900;
+
   text-transform: uppercase;
+
   letter-spacing: 0.1em;
+
   position: relative;
+
   z-index: 30;
 
   a {
     color: var(--color-white);
+
     text-shadow: 2px 2px 0 var(--color-red);
 
     transition:
@@ -231,71 +351,113 @@ const Nav = styled.nav<{ $open: boolean }>`
 
   a:hover {
     color: var(--color-red);
+
     text-shadow: 2px 2px 0 var(--color-black);
   }
 
   a:focus-visible {
     outline: 2px solid var(--color-white);
+
     outline-offset: 5px;
   }
 
   @media (max-width: 800px) {
     position: fixed;
+
     z-index: 40;
+
     top: 75px;
     left: 0;
     right: 0;
+
     min-height: auto;
+
     padding: 30px 7vw 34px;
+
     background: var(--color-black);
+
     border-top: 2px solid var(--color-red);
+
     display: ${(props) => (props.$open ? "flex" : "none")};
+
     flex-direction: column;
+
     align-items: stretch;
+
     gap: 0;
+
     font-size: 14px;
+
     overflow-y: auto;
+
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.22);
 
     a {
       padding: 15px 0;
+
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
       text-shadow: none;
     }
   }
 `;
+
+/* =========================================================
+   BOTÃO DE CONTATO MOBILE
+========================================================= */
 
 const MobileContact = styled.a`
   display: none;
 
   @media (max-width: 800px) {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
+
     margin-top: 20px;
+
     padding: 12px 18px !important;
+
     border: 2px solid var(--color-white);
+
     border-radius: 999px;
+
     color: var(--color-white);
+
     text-align: center;
+
     font-size: 11px;
+
     letter-spacing: 0.08em;
+
     border-bottom: 2px solid var(--color-white) !important;
   }
 `;
 
+/* =========================================================
+   BACKDROP DO MENU
+========================================================= */
+
 const MenuBackdrop = styled.button`
   position: fixed;
+
   z-index: 35;
+
   top: 75px;
   left: 0;
   right: 0;
   bottom: 0;
+
   width: 100%;
   height: calc(100dvh - 75px);
+
   padding: 0;
+
   border: 0;
+
   background: rgba(0, 0, 0, 0.18);
+
   cursor: default;
 
   @media (min-width: 801px) {
@@ -303,18 +465,31 @@ const MenuBackdrop = styled.button`
   }
 `;
 
+/* =========================================================
+   CONTATO DESKTOP
+========================================================= */
+
 const HeaderContact = styled.a`
   position: relative;
+
   z-index: 30;
+
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   border: 2px solid var(--color-white);
+
   border-radius: 999px;
+
   padding: 10px 19px;
+
   color: var(--color-white);
+
   font-size: 11px;
   font-weight: 900;
+
   letter-spacing: 0.08em;
 
   transition:
@@ -323,11 +498,13 @@ const HeaderContact = styled.a`
 
   &:hover {
     background: var(--color-white);
+
     color: var(--color-black);
   }
 
   &:focus-visible {
     outline: 2px solid var(--color-white);
+
     outline-offset: 5px;
   }
 
@@ -336,28 +513,41 @@ const HeaderContact = styled.a`
   }
 `;
 
+/* =========================================================
+   MENU SANDUÍCHE
+========================================================= */
+
 const MenuButton = styled.button`
   display: none;
+
   position: relative;
+
   z-index: 50;
+
   background: none;
+
   border: 0;
+
   padding: 10px;
 
   &:focus-visible {
     outline: 2px solid var(--color-white);
+
     outline-offset: 3px;
   }
 
   @media (max-width: 800px) {
     display: grid;
+
     gap: 5px;
   }
 
   i {
     display: block;
+
     width: 26px;
     height: 3px;
+
     background: var(--color-white);
 
     transition:
