@@ -171,22 +171,30 @@ const Header = styled.header`
 
 const HeaderPaper = styled.img`
   position: absolute;
-
   z-index: 1;
 
-  top: clamp(-260px, -14vw, -80px);
+  top: -110px;
   left: 0;
 
   width: 100%;
-  height: auto;
+  height: 320px;
+
+  object-fit: fill;
+  object-position: center bottom;
 
   display: block;
-
   pointer-events: none;
   user-select: none;
 
   @media (max-width: 800px) {
-    display: none;
+    top: -26px;
+    left: 0;
+
+    width: 100%;
+    height: 78px;
+
+    object-fit: cover;
+    object-position: center bottom;
   }
 `;
 
@@ -201,53 +209,34 @@ const MobileHeaderPaper = styled.div`
     display: block;
 
     position: absolute;
-
     z-index: 1;
 
-    top: 0;
+    top: -26px;
     left: 0;
 
     width: 100%;
-    height: 82px;
+    height: 78px;
 
     overflow: hidden;
 
     pointer-events: none;
     user-select: none;
 
-    /*
-      O arquivo original possui uma área clara
-      antes da faixa preta.
-
-      Usamos a própria imagem como background
-      e deslocamos ela para cima para cortar
-      essa sobra.
-    */
     background-image: url("/assets/papelrasgado.png");
-
     background-repeat: no-repeat;
 
     /*
-      A largura da imagem acompanha exatamente
-      a largura da tela.
+      Aumentamos bastante a altura da imagem
+      para deixar a faixa preta mais alta.
     */
-    background-size: 100% auto;
+    background-size: 100% 210px;
 
     /*
-      -8px corta a sobra superior sem alterar
-      a posição do header.
+      Subimos a imagem para esconder a área
+      clara original e manter o papel preto
+      atrás do logo e do menu.
     */
-    background-position: center -8px;
-  }
-
-  @media (max-width: 375px) {
-    /*
-      Telas muito estreitas precisam de um
-      pequeno ajuste adicional.
-    */
-    height: 82px;
-
-    background-position: center -9px;
+    background-position: center -48px;
   }
 `;
 
@@ -257,7 +246,6 @@ const MobileHeaderPaper = styled.div`
 
 const HeaderContent = styled.div`
   position: relative;
-
   z-index: 10;
 
   width: 100%;
@@ -270,7 +258,17 @@ const HeaderContent = styled.div`
   justify-content: space-between;
 
   @media (max-width: 800px) {
+    /*
+      O header continua tendo 75px,
+      mas os elementos ficam concentrados
+      na parte superior, acompanhando
+      a faixa preta do papel.
+    */
+    height: 58px;
+
     padding: 0 5vw;
+
+    align-items: center;
   }
 `;
 
