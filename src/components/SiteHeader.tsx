@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const A = "/assets/";
-const BLACK = "#080808";
-const RED = "#ef1b14";
 
 type SiteHeaderProps = {
   onNavigate?: () => void;
@@ -28,12 +26,14 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 801px)");
+
     const handleChange = () => {
       if (mediaQuery.matches) setMenuOpen(false);
     };
 
     handleChange();
     mediaQuery.addEventListener("change", handleChange);
+
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
@@ -67,6 +67,7 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
             aria-hidden="true"
             decoding="async"
           />
+
           <span>
             ONE
             <br />
@@ -82,12 +83,15 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
           <a href="#sobre" onClick={closeMenu}>
             sobre nós
           </a>
+
           <a href="#servicos" onClick={closeMenu}>
             serviços
           </a>
+
           <a href="#sessions" onClick={closeMenu}>
             one sessions
           </a>
+
           <a href="#projetos" onClick={closeMenu}>
             trabalhos
           </a>
@@ -150,11 +154,11 @@ const Logo = styled.a`
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--font-display);
   font-size: 22px;
   line-height: 0.78;
   letter-spacing: -0.05em;
-  color: #fff;
+  color: var(--color-white);
   position: relative;
   z-index: 3;
 
@@ -188,18 +192,21 @@ const Nav = styled.nav<{ $open: boolean }>`
   z-index: 3;
 
   a {
-    color: #fff;
-    text-shadow: 2px 2px 0 ${RED};
-    transition: color 0.2s ease, text-shadow 0.2s ease;
+    color: var(--color-white);
+    text-shadow: 2px 2px 0 var(--color-red);
+
+    transition:
+      color 0.2s ease,
+      text-shadow 0.2s ease;
   }
 
   a:hover {
-    color: ${RED};
-    text-shadow: 2px 2px 0 ${BLACK};
+    color: var(--color-red);
+    text-shadow: 2px 2px 0 var(--color-black);
   }
 
   a:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--color-white);
     outline-offset: 5px;
   }
 
@@ -210,7 +217,7 @@ const Nav = styled.nav<{ $open: boolean }>`
     right: 0;
     min-height: calc(100dvh - 75px);
     padding: 28px 5vw 48px;
-    background: ${BLACK};
+    background: var(--color-black);
     display: ${(props) => (props.$open ? "flex" : "none")};
     flex-direction: column;
     align-items: flex-start;
@@ -226,22 +233,25 @@ const HeaderContact = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-white);
   border-radius: 999px;
   padding: 10px 19px;
-  color: #fff;
+  color: var(--color-white);
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.08em;
-  transition: background 0.2s ease, color 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 
   &:hover {
-    background: #fff;
-    color: ${BLACK};
+    background: var(--color-white);
+    color: var(--color-black);
   }
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--color-white);
     outline-offset: 5px;
   }
 
@@ -259,7 +269,7 @@ const MenuButton = styled.button`
   padding: 10px;
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--color-white);
     outline-offset: 3px;
   }
 
@@ -272,7 +282,10 @@ const MenuButton = styled.button`
     display: block;
     width: 26px;
     height: 3px;
-    background: #fff;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    background: var(--color-white);
+
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
   }
 `;
