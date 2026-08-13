@@ -153,6 +153,15 @@ const HeaderPaper = styled.img`
   display: block;
   pointer-events: none;
   user-select: none;
+
+  @media (max-width: 800px) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 92px;
+    object-fit: cover;
+    object-position: center bottom;
+  }
 `;
 
 const HeaderContent = styled.div`
