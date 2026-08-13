@@ -1,6 +1,6 @@
 # ONE FRAME — Landing Page
 
-Landing page em React + TypeScript + Vite + styled-components, construída a partir dos materiais visuais fornecidos.
+Landing page da ONE FRAME em React + TypeScript + Vite + styled-components.
 
 ## Rodar localmente
 
@@ -17,15 +17,17 @@ npm run build
 
 ## Estrutura
 
-- `src/App.tsx` — página e conteúdo inicial.
-- `src/styles/global.ts` — reset, tipografia base e animações.
-- `public/assets/` — texturas e símbolo gráfico fornecidos.
+- `src/App.tsx` — composição principal da página.
+- `src/components/` — componentes da landing page.
+- `src/data/` — dados de serviços, clientes e projetos.
+- `src/styles/global.ts` — estilos globais e acessibilidade.
+- `public/assets/` — assets visuais do site.
 
-## Projetos e banco de dados
+## Projetos
 
-O bloco `projects` em `src/App.tsx` é propositalmente isolado. Na próxima etapa ele pode ser substituído por uma chamada `GET /projects`, preservando a interface do card.
+Os projetos atualmente são definidos em `src/data/projects.ts`, permitindo substituir os dados locais por uma API no futuro sem alterar a interface dos cards.
 
-Campos sugeridos para a futura API:
+Campos sugeridos para uma futura API:
 
 ```ts
 {
@@ -44,4 +46,6 @@ Campos sugeridos para a futura API:
 }
 ```
 
-Os textos institucionais desta primeira versão são uma proposta editorial baseada no posicionamento visual apresentado; podem ser substituídos pelo conteúdo definitivo do cliente.
+## Qualidade
+
+O projeto possui validação automática de build via GitHub Actions para `main` e pull requests.
