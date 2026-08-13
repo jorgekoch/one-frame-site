@@ -279,33 +279,28 @@ const HeaderContent = styled.div`
 const Logo = styled.a`
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   font-family: var(--font-display);
   font-size: 22px;
   line-height: 0.78;
-
   letter-spacing: -0.05em;
 
   color: var(--color-white);
+  text-shadow: 2px 2px 0 var(--color-red);
 
   position: relative;
-
   z-index: 30;
 
   img.logo-mark {
     display: block;
-
     width: 46px;
     height: 46px;
-
     object-fit: contain;
   }
 
   @media (max-width: 800px) {
     gap: 7px;
-
     font-size: 17px;
 
     img.logo-mark {
@@ -469,16 +464,13 @@ const MenuBackdrop = styled.button`
 
 const HeaderContact = styled.a`
   position: relative;
-
   z-index: 30;
 
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
   border: 2px solid var(--color-white);
-
   border-radius: 999px;
 
   padding: 10px 19px;
@@ -487,22 +479,26 @@ const HeaderContact = styled.a`
 
   font-size: 11px;
   font-weight: 900;
-
   letter-spacing: 0.08em;
+
+  box-shadow: 3px 3px 0 var(--color-red);
 
   transition:
     background 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
     background: var(--color-white);
-
     color: var(--color-black);
+
+    box-shadow: 4px 4px 0 var(--color-red);
+    transform: translate(-1px, -1px);
   }
 
   &:focus-visible {
     outline: 2px solid var(--color-white);
-
     outline-offset: 5px;
   }
 
