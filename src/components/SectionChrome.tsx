@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-const RED = "#ef1b14";
-const BLACK = "#080808";
-const PAPER = "#f7f5ef";
-
 export function Band() {
   return (
     <BandBar>
@@ -34,12 +30,14 @@ export function SiteFooter() {
           que geram presença real.
         </span>
       </div>
+
       <nav>
         <a href="#sobre">sobre</a>
         <a href="#servicos">serviços</a>
         <a href="#projetos">trabalhos</a>
         <a href="#contato">contato</a>
       </nav>
+
       <small>
         © {new Date().getFullYear()} ONE FRAME
         <br />
@@ -50,8 +48,8 @@ export function SiteFooter() {
 }
 
 const BandBar = styled.div`
-  background: ${BLACK};
-  color: #fff;
+  background: var(--color-black);
+  color: var(--color-white);
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -62,7 +60,7 @@ const BandBar = styled.div`
   text-transform: uppercase;
 
   span:nth-child(2) {
-    color: ${RED};
+    color: var(--color-red);
   }
 
   @media (max-width: 600px) {
@@ -72,7 +70,10 @@ const BandBar = styled.div`
 
 const TornEdge = styled.div<{ $tone: "paper" | "black" }>`
   height: 62px;
-  background: ${(props) => (props.$tone === "paper" ? PAPER : BLACK)};
+  background: ${(props) =>
+    props.$tone === "paper"
+      ? "var(--color-paper)"
+      : "var(--color-black)"};
   position: relative;
   z-index: 8;
   margin-top: -1px;
@@ -135,17 +136,15 @@ const TornEdge = styled.div<{ $tone: "paper" | "black" }>`
 `;
 
 const Footer = styled.footer`
-  background: ${BLACK};
-  color: #fff;
+  background: var(--color-black);
+  color: var(--color-white);
   padding: 55px 5vw 25px;
   display: grid;
   grid-template-columns: 1.5fr 1fr auto;
   gap: 40px;
 
   b {
-    font:
-      38px/0.7 Impact,
-      "Arial Black";
+    font: 38px/0.7 var(--font-display);
   }
 
   span {
@@ -164,8 +163,17 @@ const Footer = styled.footer`
     font-weight: 700;
   }
 
+  nav a {
+    transition: color 0.2s ease;
+  }
+
   nav a:hover {
-    color: ${RED};
+    color: var(--color-red);
+  }
+
+  nav a:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 4px;
   }
 
   small {
@@ -176,6 +184,7 @@ const Footer = styled.footer`
 
   @media (max-width: 700px) {
     grid-template-columns: 1fr;
+
     small {
       text-align: left;
     }
