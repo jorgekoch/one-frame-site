@@ -76,48 +76,204 @@ const Header = styled.header`
   z-index: 100;
   top: 0;
   left: 0;
-  width: 100%;
 
-  /*
-   * The torn-paper image is the actual background of the topbar.
-   * Its proportions are preserved, so the black area stays on top
-   * and the torn white edge becomes the divider below.
-   */
-  height: clamp(112px, 10.833vw, 208px);
-  padding: 18px 4vw 0;
+  width: 100%;
+  height: 190px;
 
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 
-  background-color: transparent;
-  background-image: url('${A}papelrasgado.png');
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 100% auto;
+  padding: 18px 4vw 0;
 
   color: #fff;
+
+  /*
+   * Fundo preto do topbar.
+   * O PNG possui transparência, então o preto aparece
+   * através das áreas transparentes.
+   */
+  background-color: ${BLACK};
+
+  /*
+   * Papel rasgado.
+   */
+  background-image: url('${A}papelrasgado.png');
+  background-repeat: no-repeat;
+
+  /*
+   * A imagem começa no topo do header.
+   */
+  background-position: center top;
+
+  /*
+   * Mantém a proporção original da imagem.
+   */
+  background-size: 100% auto;
+
+  /*
+   * O rasgado pode ultrapassar o limite inferior
+   * do header sem ser cortado.
+   */
   overflow: visible;
 
   /*
-   * Keep the navigation inside the black portion of the artwork.
+   * Os elementos do menu ficam acima da imagem.
    */
   > * {
     position: relative;
     z-index: 2;
   }
 
+  @media (max-width: 1200px) {
+    height: 175px;
+    padding-left: 4vw;
+    padding-right: 4vw;
+
+    background-size: auto 175px;
+    background-position: center top;
+  }
+
   @media (max-width: 800px) {
-    height: 112px;
+    height: 115px;
+
     padding: 14px 5vw 0;
-    background-size: auto 112px;
+
+    background-size: auto 115px;
     background-position: center top;
   }
 `
-const Logo = styled.a`display:flex;align-items:center;gap:8px;font-family:Impact,'Arial Black',sans-serif;font-size:17px;line-height:.78;letter-spacing:-.05em;color:#fff;position:relative;z-index:2;img{width:34px;height:34px;object-fit:contain;filter:brightness(0) invert(1);}`
-const Nav = styled.nav<{ $open: boolean }>`display:flex;gap:34px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;position:relative;z-index:2;a{color:#fff}a:hover{color:${RED}}@media(max-width:800px){position:fixed;top:78px;left:0;right:0;background:${BLACK};padding:28px 5vw;display:${p => p.$open ? 'flex' : 'none'};flex-direction:column;gap:18px;font-size:14px;a{color:#fff}}`
-const HeaderContact = styled.a`border:2px solid #fff;border-radius:999px;padding:9px 17px;font-size:9px;font-weight:900;letter-spacing:.08em;position:relative;z-index:2;color:#fff;&:hover{background:#fff;color:${BLACK}}@media(max-width:800px){display:none}`
-const MenuButton = styled.button`display:none;background:none;border:0;padding:10px;position:relative;z-index:2;@media(max-width:800px){display:grid;gap:5px}i{display:block;width:26px;height:3px;background:#fff}`
+const Logo = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 17px;
+  line-height: .78;
+  letter-spacing: -.05em;
+
+  color: #fff;
+
+  position: relative;
+  z-index: 3;
+
+  img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+
+    filter: brightness(0) invert(1);
+  }
+`
+const Nav = styled.nav<{ $open: boolean }>`
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: .1em;
+
+  position: relative;
+  z-index: 3;
+
+  a {
+    color: #fff;
+    transition: color .2s ease;
+  }
+
+  a:hover {
+    color: ${RED};
+  }
+
+  @media (max-width: 800px) {
+    position: fixed;
+
+    top: 75px;
+    left: 0;
+    right: 0;
+
+    padding: 28px 5vw;
+
+    background: ${BLACK};
+
+    display: ${p => p.$open ? 'flex' : 'none'};
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    font-size: 14px;
+
+    a {
+      color: #fff;
+    }
+  }
+`
+const HeaderContact = styled.a`
+  position: relative;
+  z-index: 3;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #fff;
+  border-radius: 999px;
+
+  padding: 9px 17px;
+
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .08em;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+
+  &:hover {
+    background: #fff;
+    color: ${BLACK};
+  }
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
+const MenuButton = styled.button`
+  display: none;
+
+  position: relative;
+  z-index: 3;
+
+  background: none;
+  border: 0;
+
+  padding: 10px;
+
+  @media (max-width: 800px) {
+    display: grid;
+    gap: 5px;
+  }
+
+  i {
+    display: block;
+
+    width: 26px;
+    height: 3px;
+
+    background: #fff;
+  }
+`
 const Hero = styled.section`min-height:830px;position:relative;display:flex;align-items:center;gap:3vw;padding:140px 5vw 80px;background:${PAPER};overflow:hidden;@media(max-width:900px){flex-direction:column;align-items:flex-start;padding-top:125px}`
 const PaperTexture = styled.div`position:absolute;inset:0;opacity:.12;background-image:radial-gradient(#000 .7px,transparent .7px);background-size:6px 6px;pointer-events:none;`
 const HeroCopy = styled.div`position:relative;z-index:3;width:48%;min-width:430px;@media(max-width:900px){width:100%;min-width:0}`
