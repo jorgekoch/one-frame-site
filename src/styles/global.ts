@@ -63,7 +63,7 @@ export const GlobalStyle = createGlobalStyle`
    */
   header {
     height: clamp(112px, 10.833vw, 208px) !important;
-    background-color: #080808 !important;
+    background-color: transparent !important;
     background-size: 100% auto !important;
     background-position: center -10.95vw !important;
     background-repeat: no-repeat !important;

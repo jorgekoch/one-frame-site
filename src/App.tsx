@@ -90,7 +90,7 @@ const Header = styled.header`
   align-items: flex-start;
   justify-content: space-between;
 
-  background-color: ${BLACK};
+  background-color: transparent;
   background-image: url('${A}papelrasgado.png');
   background-repeat: no-repeat;
   background-position: center top;
