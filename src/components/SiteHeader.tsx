@@ -95,7 +95,19 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
           <a href="#projetos" onClick={closeMenu}>
             trabalhos
           </a>
+
+          <MobileContact href="#contato" onClick={closeMenu}>
+            FALE CONOSCO
+          </MobileContact>
         </Nav>
+
+        {menuOpen && (
+          <MenuBackdrop
+            type="button"
+            aria-label="Fechar menu"
+            onClick={closeMenu}
+          />
+        )}
 
         <HeaderContact href="#contato" onClick={closeMenu}>
           FALE CONOSCO
@@ -125,6 +137,10 @@ const Header = styled.header`
   height: 100px;
   background: transparent;
   overflow: visible;
+
+  @media (max-width: 800px) {
+    height: 75px;
+  }
 `;
 
 const HeaderPaper = styled.img`
@@ -148,6 +164,10 @@ const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 800px) {
+    padding: 0 5vw;
+  }
 `;
 
 const Logo = styled.a`
@@ -160,7 +180,7 @@ const Logo = styled.a`
   letter-spacing: -0.05em;
   color: var(--color-white);
   position: relative;
-  z-index: 3;
+  z-index: 30;
 
   img.logo-mark {
     display: block;
@@ -170,12 +190,12 @@ const Logo = styled.a`
   }
 
   @media (max-width: 800px) {
-    gap: 8px;
-    font-size: 18px;
+    gap: 7px;
+    font-size: 17px;
 
     img.logo-mark {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
     }
   }
 `;
@@ -189,7 +209,7 @@ const Nav = styled.nav<{ $open: boolean }>`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   position: relative;
-  z-index: 3;
+  z-index: 30;
 
   a {
     color: var(--color-white);
@@ -212,24 +232,71 @@ const Nav = styled.nav<{ $open: boolean }>`
 
   @media (max-width: 800px) {
     position: fixed;
+    z-index: 40;
     top: 75px;
     left: 0;
     right: 0;
-    min-height: calc(100dvh - 75px);
-    padding: 28px 5vw 48px;
+    min-height: auto;
+    padding: 30px 7vw 34px;
     background: var(--color-black);
+    border-top: 2px solid var(--color-red);
     display: ${(props) => (props.$open ? "flex" : "none")};
     flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
+    align-items: stretch;
+    gap: 0;
     font-size: 14px;
     overflow-y: auto;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.22);
+
+    a {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      text-shadow: none;
+    }
+  }
+`;
+
+const MobileContact = styled.a`
+  display: none;
+
+  @media (max-width: 800px) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px 18px !important;
+    border: 2px solid var(--color-white);
+    border-radius: 999px;
+    color: var(--color-white);
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid var(--color-white) !important;
+  }
+`;
+
+const MenuBackdrop = styled.button`
+  position: fixed;
+  z-index: 35;
+  top: 75px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: calc(100dvh - 75px);
+  padding: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.18);
+  cursor: default;
+
+  @media (min-width: 801px) {
+    display: none;
   }
 `;
 
 const HeaderContact = styled.a`
   position: relative;
-  z-index: 3;
+  z-index: 30;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -263,7 +330,7 @@ const HeaderContact = styled.a`
 const MenuButton = styled.button`
   display: none;
   position: relative;
-  z-index: 20;
+  z-index: 50;
   background: none;
   border: 0;
   padding: 10px;
