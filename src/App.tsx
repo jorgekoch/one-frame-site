@@ -53,7 +53,7 @@ export function App() {
       </About>
 
       <Services id="servicos"><ServicesHead><Icon src={`${A}icon-sparks.png`} $size={62} $top="-20px" $left="3%" /><Icon src={`${A}icon-question.png`} $size={48} $top="42px" $right="5%" /><Label>03 / SERVIÇOS</Label><h2>O QUE VOCÊ<br /><em>PROCURA?</em></h2></ServicesHead>
-        <ServiceGrid>{services.map(([number,title,description,icon]) => <ServiceCard key={number}><div className="service-top"><span>{number}</span><img src={`${A}${icon}`} alt="" /></div><h3>{title}</h3><p>{description}</p><span className="plus">+</span></ServiceCard>)}</ServiceGrid>
+        <ServiceGrid>{services.map(([number, title, description, icon]) => <ServiceCard key={number}><div className="service-top"><span>{number}</span><img src={`${A}${icon}`} alt="" /></div><h3>{title}</h3><p>{description}</p><span className="plus">+</span></ServiceCard>)}</ServiceGrid>
       </Services><Torn $tone="black" />
 
       <Sessions id="sessions"><SessionVisual><img src={`${A}lines-03.webp`} alt="" /><div className="red-overlay" /><Icon src={`${A}icon-camera.png`} $size={145} $bottom="10%" $left="9%" $invert /><SessionTitle>ONE<br /><b>SESSIONS</b></SessionTitle><span className="number">04</span></SessionVisual>
@@ -71,11 +71,53 @@ export function App() {
 }
 
 const Page = styled.div`background:${PAPER};color:${BLACK};overflow:hidden;`
-const Header = styled.header`position:fixed;z-index:100;top:0;left:0;width:100%;height:78px;padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;background:${BLACK};color:#fff;&:after{content:'';position:absolute;left:0;right:0;bottom:-22px;height:28px;background:url('${A}torn-white-divider.png') center/100% 100% no-repeat;pointer-events:none;}`
-const Logo = styled.a`display:flex;align-items:center;gap:8px;font-family:Impact,'Arial Black',sans-serif;font-size:17px;line-height:.78;letter-spacing:-.05em;color:#fff;img{width:34px;height:34px;object-fit:contain;filter:invert(1);}`
-const Nav = styled.nav<{ $open:boolean }>`display:flex;gap:34px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;a{color:#fff}a:hover{color:${RED}}@media(max-width:800px){position:fixed;top:78px;left:0;right:0;background:${BLACK};padding:28px 5vw;display:${p=>p.$open?'flex':'none'};flex-direction:column;gap:18px;font-size:14px;}`
-const HeaderContact = styled.a`border:2px solid #fff;border-radius:999px;padding:9px 17px;font-size:9px;font-weight:900;letter-spacing:.08em;&:hover{background:#fff;color:${BLACK}}@media(max-width:800px){display:none}`
-const MenuButton = styled.button`display:none;background:none;border:0;padding:10px;@media(max-width:800px){display:grid;gap:5px}i{display:block;width:26px;height:3px;background:#fff}`
+const Header = styled.header`
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  /*
+   * The torn-paper image is the actual background of the topbar.
+   * Its proportions are preserved, so the black area stays on top
+   * and the torn white edge becomes the divider below.
+   */
+  height: clamp(112px, 10.833vw, 208px);
+  padding: 18px 4vw 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  background-color: ${BLACK};
+  background-image: url('${A}papelrasgado.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+
+  color: #fff;
+  overflow: visible;
+
+  /*
+   * Keep the navigation inside the black portion of the artwork.
+   */
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 800px) {
+    height: 112px;
+    padding: 14px 5vw 0;
+    background-size: auto 112px;
+    background-position: center top;
+  }
+`
+const Logo = styled.a`display:flex;align-items:center;gap:8px;font-family:Impact,'Arial Black',sans-serif;font-size:17px;line-height:.78;letter-spacing:-.05em;color:#fff;position:relative;z-index:2;img{width:34px;height:34px;object-fit:contain;filter:brightness(0) invert(1);}`
+const Nav = styled.nav<{ $open: boolean }>`display:flex;gap:34px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;position:relative;z-index:2;a{color:#fff}a:hover{color:${RED}}@media(max-width:800px){position:fixed;top:78px;left:0;right:0;background:${BLACK};padding:28px 5vw;display:${p => p.$open ? 'flex' : 'none'};flex-direction:column;gap:18px;font-size:14px;a{color:#fff}}`
+const HeaderContact = styled.a`border:2px solid #fff;border-radius:999px;padding:9px 17px;font-size:9px;font-weight:900;letter-spacing:.08em;position:relative;z-index:2;color:#fff;&:hover{background:#fff;color:${BLACK}}@media(max-width:800px){display:none}`
+const MenuButton = styled.button`display:none;background:none;border:0;padding:10px;position:relative;z-index:2;@media(max-width:800px){display:grid;gap:5px}i{display:block;width:26px;height:3px;background:#fff}`
 const Hero = styled.section`min-height:830px;position:relative;display:flex;align-items:center;gap:3vw;padding:140px 5vw 80px;background:${PAPER};overflow:hidden;@media(max-width:900px){flex-direction:column;align-items:flex-start;padding-top:125px}`
 const PaperTexture = styled.div`position:absolute;inset:0;opacity:.12;background-image:radial-gradient(#000 .7px,transparent .7px);background-size:6px 6px;pointer-events:none;`
 const HeroCopy = styled.div`position:relative;z-index:3;width:48%;min-width:430px;@media(max-width:900px){width:100%;min-width:0}`
@@ -90,14 +132,14 @@ const CardLines = styled.div`position:absolute;inset:-20%;background:repeating-l
 const CardLogo = styled.div`position:relative;z-index:2;text-align:center;color:#fff;font:clamp(40px,6vw,90px)/.68 Impact,'Arial Black';letter-spacing:-.07em;text-shadow:4px 4px 0 ${BLACK};strong{color:${BLACK}}`
 const CardCaption = styled.small`position:absolute;left:18px;bottom:14px;color:#fff;font-size:8px;letter-spacing:.25em;font-weight:900;`
 const Band = styled.div`background:${BLACK};color:#fff;display:flex;justify-content:space-between;gap:20px;padding:15px 5vw;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;span:nth-child(2){color:${RED}}@media(max-width:600px){flex-wrap:wrap}`
-const Torn = styled.div<{ $tone:'paper'|'black' }>`height:62px;background:${p=>p.$tone==='paper'?PAPER:BLACK};position:relative;z-index:8;margin-top:-1px;margin-bottom:-1px;clip-path:polygon(0 18%,2% 55%,4% 24%,6% 66%,8% 31%,10% 58%,12% 20%,14% 62%,16% 28%,18% 69%,20% 24%,22% 58%,24% 18%,26% 65%,28% 29%,30% 62%,32% 20%,34% 56%,36% 29%,38% 68%,40% 22%,42% 59%,44% 18%,46% 65%,48% 27%,50% 57%,52% 20%,54% 66%,56% 26%,58% 60%,60% 18%,62% 63%,64% 26%,66% 58%,68% 20%,70% 66%,72% 25%,74% 58%,76% 18%,78% 64%,80% 25%,82% 58%,84% 18%,86% 64%,88% 24%,90% 58%,92% 18%,94% 63%,96% 25%,98% 57%,100% 18%,100% 100%,0 100%);`
+const Torn = styled.div<{ $tone: 'paper' | 'black' }>`height:62px;background:${p => p.$tone === 'paper' ? PAPER : BLACK};position:relative;z-index:8;margin-top:-1px;margin-bottom:-1px;clip-path:polygon(0 18%,2% 55%,4% 24%,6% 66%,8% 31%,10% 58%,12% 20%,14% 62%,16% 28%,18% 69%,20% 24%,22% 58%,24% 18%,26% 65%,28% 29%,30% 62%,32% 20%,34% 56%,36% 29%,38% 68%,40% 22%,42% 59%,44% 18%,46% 65%,48% 27%,50% 57%,52% 20%,54% 66%,56% 26%,58% 60%,60% 18%,62% 63%,64% 26%,66% 58%,68% 20%,70% 66%,72% 25%,74% 58%,76% 18%,78% 64%,80% 25%,82% 58%,84% 18%,86% 64%,88% 24%,90% 58%,92% 18%,94% 63%,96% 25%,98% 57%,100% 18%,100% 100%,0 100%);`
 const About = styled.section`display:grid;grid-template-columns:1fr 1.25fr;min-height:720px;background:${PAPER};@media(max-width:800px){grid-template-columns:1fr}`
 const AboutGraphic = styled.div`position:relative;min-height:600px;background:${RED};overflow:hidden;.texture{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;mix-blend-mode:multiply}`
 const AboutMark = styled.div`position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-5deg);font:clamp(90px,12vw,180px)/.65 Impact,'Arial Black';text-align:center;color:#fff;letter-spacing:-.09em;text-shadow:4px 4px 0 ${BLACK};span{color:${BLACK}}`
 const AboutCopy = styled.div`padding:100px 8vw 90px;max-width:800px;h2{font:clamp(55px,6vw,90px)/.82 Impact,'Arial Black';letter-spacing:-.06em;text-transform:uppercase;margin:22px 0 38px}em{font-family:Georgia,serif;font-weight:400;text-transform:none;letter-spacing:-.08em;color:${RED}}p{font-size:16px;line-height:1.25;max-width:560px}`
 const Label = styled.span`font-size:9px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;opacity:.65;`
 const TextLink = styled.a`display:block;margin-top:35px;font-weight:900;font-size:13px;text-decoration:underline;span{margin-left:8px;color:${RED}}`
-const Icon = styled.img<{ $size:number;$top?:string;$right?:string;$bottom?:string;$left?:string;$invert?:boolean }>`position:absolute;z-index:4;width:${p=>p.$size}px;height:auto;top:${p=>p.$top||'auto'};right:${p=>p.$right||'auto'};bottom:${p=>p.$bottom||'auto'};left:${p=>p.$left||'auto'};object-fit:contain;${p=>p.$invert?'filter:invert(1);':''}`
+const Icon = styled.img<{ $size: number; $top?: string; $right?: string; $bottom?: string; $left?: string; $invert?: boolean }>`position:absolute;z-index:4;width:${p => p.$size}px;height:auto;top:${p => p.$top || 'auto'};right:${p => p.$right || 'auto'};bottom:${p => p.$bottom || 'auto'};left:${p => p.$left || 'auto'};object-fit:contain;${p => p.$invert ? 'filter:invert(1);' : ''}`
 const Services = styled.section`position:relative;background:${PAPER};padding:110px 5vw 125px;`
 const ServicesHead = styled.div`position:relative;text-align:center;margin:0 auto 65px;h2{font:clamp(62px,8vw,115px)/.78 Impact,'Arial Black';letter-spacing:-.07em;margin:20px 0;text-transform:uppercase}em{font-family:Georgia,serif;font-weight:400;text-transform:none;color:${RED}}`
 const ServiceGrid = styled.div`display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1250px;margin:auto;@media(max-width:1000px){grid-template-columns:repeat(2,1fr)}@media(max-width:600px){grid-template-columns:1fr}`
@@ -111,7 +153,7 @@ const ClientGrid = styled.div`max-width:1050px;margin:65px auto 0;display:grid;g
 const Projects = styled.section`background:${PAPER};padding:120px 5vw 150px`
 const ProjectsHead = styled.div`position:relative;text-align:center;margin-bottom:75px;h2{font:clamp(70px,9vw,125px)/.75 Impact,'Arial Black';letter-spacing:-.07em;margin:20px 0;text-transform:uppercase}em{font-family:Georgia,serif;font-weight:400;text-transform:none;color:${RED}}`
 const ProjectGrid = styled.div`max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(12,1fr);gap:55px 20px;@media(max-width:800px){display:block}`
-const Project = styled.article<{ $featured:boolean }>`grid-column:span ${p=>p.$featured?7:5};@media(max-width:800px){margin-bottom:45px}`
+const Project = styled.article<{ $featured: boolean }>`grid-column:span ${p => p.$featured ? 7 : 5};@media(max-width:800px){margin-bottom:45px}`
 const ProjectImage = styled.div`position:relative;aspect-ratio:1.45;overflow:hidden;border:2px solid ${BLACK};background:${BLACK};box-shadow:6px 7px 0 ${RED};transition:.25s;&:hover{transform:translate(-2px,-2px);box-shadow:9px 10px 0 ${BLACK}}img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.2)}:after{content:'';position:absolute;inset:0;background:${RED};mix-blend-mode:multiply;opacity:.25}span,b{position:absolute;z-index:2;color:#fff;font-weight:900}span{left:12px;top:10px;font-size:10px}b{right:14px;bottom:10px;font-size:22px}`
 const ProjectMeta = styled.div`display:grid;grid-template-columns:1fr auto;padding:12px 0;border-bottom:1px solid ${BLACK};text-transform:uppercase;font-size:10px;strong{font-size:12px}span{grid-column:1;color:#555;margin-top:4px}small{grid-row:1/3;grid-column:2;color:#555}`
 const ProjectsCTA = styled.a`display:block;width:max-content;margin:70px auto 0;border-bottom:2px solid ${BLACK};font-size:11px;font-weight:900;letter-spacing:.12em;padding-bottom:7px;&:hover{color:${RED};border-color:${RED}}span{margin-left:10px}`
