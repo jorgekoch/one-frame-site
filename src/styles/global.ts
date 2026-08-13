@@ -129,7 +129,6 @@ export const GlobalStyle = createGlobalStyle`
 
   /* Add the paper-cut edge to the sections that currently do not have a divider. */
   main > section:nth-of-type(2)::after,
-  main > section:nth-of-type(5)::after,
   main > section:nth-of-type(6)::after {
     content:'';
     position:absolute;
@@ -142,10 +141,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   main > section:nth-of-type(2)::after {
-    background:url('/assets/tear-black.png') center bottom / 100% 100% no-repeat;
-  }
-
-  main > section:nth-of-type(5)::after {
     background:url('/assets/tear-black.png') center bottom / 100% 100% no-repeat;
   }
 
@@ -175,7 +170,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     main > section:nth-of-type(2)::after,
-    main > section:nth-of-type(5)::after,
     main > section:nth-of-type(6)::after {
       height:34px;
     }
