@@ -50,7 +50,13 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
 
   return (
     <Header>
-      <HeaderPaper src={`${A}papelrasgado.png`} alt="" aria-hidden="true" />
+      <HeaderPaper
+        src={`${A}papelrasgado.png`}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+      />
 
       <HeaderContent>
         <Logo href="#top" onClick={closeMenu} aria-label="One Frame">
@@ -59,6 +65,7 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
             src={`${A}logo%20transparente.png`}
             alt=""
             aria-hidden="true"
+            decoding="async"
           />
           <span>
             ONE
