@@ -23,6 +23,8 @@ export function ClientsSection({ clients }: { clients: Client[] }) {
         src="/assets/icon-crown.png"
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
       />
     </Clients>
   );
