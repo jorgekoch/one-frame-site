@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
   }
 
   body {
@@ -27,7 +28,8 @@ export const GlobalStyle = createGlobalStyle`
   body,
   button,
   input,
-  textarea {
+  textarea,
+  select {
     font-family: inherit;
   }
 
@@ -50,9 +52,20 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
   }
 
+  :focus-visible {
+    outline: 3px solid #ef1b14;
+    outline-offset: 4px;
+  }
+
   ::selection {
     background: #ef1b14;
     color: #fff;
+  }
+
+  @media (max-width: 800px) {
+    html {
+      scroll-padding-top: 80px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
