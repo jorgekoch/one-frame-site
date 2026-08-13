@@ -20,6 +20,32 @@ export const GlobalStyle = createGlobalStyle`
   img { display: block; max-width: 100%; }
   ::selection { background: #ef1b14; color: #fff; }
 
+  /* Header: use the supplied torn-paper reference as the lower edge.
+     The menu and logo stay above the image so the paper never covers them. */
+  header::after {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: -43px !important;
+    height: 88px !important;
+    background: url('/assets/papelrasgado.jpg') center bottom / 100% 100% no-repeat !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+  }
+
+  header > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 800px) {
+    header::after {
+      bottom: -36px !important;
+      height: 72px !important;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       scroll-behavior: auto !important;
