@@ -78,69 +78,74 @@ const Header = styled.header`
   left: 0;
 
   width: 100%;
-  height: 190px;
+  height: 150px;
+
+  padding: 18px 4vw 0;
 
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 
-  padding: 18px 4vw 0;
+  background: #080808;
 
   color: #fff;
 
-  /*
-   * Fundo preto do topbar.
-   * O PNG possui transparência, então o preto aparece
-   * através das áreas transparentes.
-   */
-  background-color: ${BLACK};
-
-  /*
-   * Papel rasgado.
-   */
-  background-image: url('${A}papelrasgado.png');
-  background-repeat: no-repeat;
-
-  /*
-   * A imagem começa no topo do header.
-   */
-  background-position: center top;
-
-  /*
-   * Mantém a proporção original da imagem.
-   */
-  background-size: 100% auto;
-
-  /*
-   * O rasgado pode ultrapassar o limite inferior
-   * do header sem ser cortado.
-   */
   overflow: visible;
 
-  /*
-   * Os elementos do menu ficam acima da imagem.
-   */
+ 
   > * {
     position: relative;
+    z-index: 3;
+  }
+
+ 
+  &::after {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 100%;
+
+    height: 110px;
+
+    background-image: url('${A}papelrasgado.png');
+
+    background-repeat: no-repeat;
+
+    background-size: 100% auto;
+
+    background-position: center bottom;
+
+    pointer-events: none;
+
     z-index: 2;
   }
 
   @media (max-width: 1200px) {
-    height: 175px;
-    padding-left: 4vw;
-    padding-right: 4vw;
+    height: 140px;
 
-    background-size: auto 175px;
-    background-position: center top;
+    &::after {
+      height: 100px;
+
+      background-size: auto 100px;
+      background-position: center bottom;
+    }
   }
 
   @media (max-width: 800px) {
-    height: 115px;
+    height: 105px;
 
     padding: 14px 5vw 0;
 
-    background-size: auto 115px;
-    background-position: center top;
+    &::after {
+      height: 80px;
+
+      background-size: auto 80px;
+      background-position: center bottom;
+    }
   }
 `
 const Logo = styled.a`
