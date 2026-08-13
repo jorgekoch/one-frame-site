@@ -27,154 +27,47 @@ const clients = ['ALLURE', 'INTERDRINKS', 'CEASA', 'TORK', 'FITOSSÊNCIA', 'VALO
 
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === 'Escape' && setMenuOpen(false)
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
-
   const closeMenu = () => setMenuOpen(false)
 
-  return (
-    <>
-      <GlobalStyle />
-      <Page id="top">
-        <Header>
-          <Logo href="#top" onClick={closeMenu} aria-label="One Frame">
-            <img src={`${A}logo-symbol-black.png`} alt="" />
-            <span>ONE<br />FRAME</span>
-          </Logo>
-          <Nav $open={menuOpen}>
-            <a href="#sobre" onClick={closeMenu}>sobre nós</a>
-            <a href="#servicos" onClick={closeMenu}>serviços</a>
-            <a href="#sessions" onClick={closeMenu}>one sessions</a>
-            <a href="#projetos" onClick={closeMenu}>trabalhos</a>
-          </Nav>
-          <HeaderContact href="#contato" onClick={closeMenu}>FALE CONOSCO</HeaderContact>
-          <MenuButton onClick={() => setMenuOpen(v => !v)} aria-label="Abrir menu"><i /><i /></MenuButton>
-        </Header>
+  return <><GlobalStyle /><Page id="top">
+    <Header>
+      <Logo href="#top" onClick={closeMenu} aria-label="One Frame"><img src={`${A}logo-symbol-black.png`} alt="" /><span>ONE<br />FRAME</span></Logo>
+      <Nav $open={menuOpen}><a href="#sobre" onClick={closeMenu}>sobre nós</a><a href="#servicos" onClick={closeMenu}>serviços</a><a href="#sessions" onClick={closeMenu}>one sessions</a><a href="#projetos" onClick={closeMenu}>trabalhos</a></Nav>
+      <HeaderContact href="#contato" onClick={closeMenu}>FALE CONOSCO</HeaderContact><MenuButton onClick={() => setMenuOpen(v => !v)} aria-label="Abrir menu"><i /><i /></MenuButton>
+    </Header>
 
-        <main>
-          <Hero>
-            <PaperTexture />
-            <Icon src={`${A}icon-arrow.png`} $size={64} $top="17%" $right="8%" />
-            <Icon src={`${A}icon-bolt.png`} $size={64} $top="34%" $right="3%" />
-            <Icon src={`${A}icon-crown.png`} $size={86} $bottom="9%" $right="7%" />
-            <HeroCopy>
-              <MiniLogo>ONE<br /><b>FRAME</b></MiniLogo>
-              <HeroTitle>CADA<br />FRAME<br /><em>IMPORTA</em></HeroTitle>
-              <HeroText>Studio Mobile onde criamos vídeos<br />que geram presença real.</HeroText>
-              <CTA href="#contato">FALE CONOSCO <span>↗</span></CTA>
-            </HeroCopy>
-            <HeroCard>
-              <CardTop><span>ONE FRAME</span><b>REC ●</b></CardTop>
-              <CardScreen><CardLines /><CardLogo>ONE<br /><strong>FRAME</strong></CardLogo><CardCaption>STUDIO MOBILE / CURITIBA</CardCaption></CardScreen>
-            </HeroCard>
-          </Hero>
+    <main>
+      <Hero><PaperTexture /><Icon src={`${A}icon-arrow.png`} $size={64} $top="17%" $right="8%" /><Icon src={`${A}icon-bolt.png`} $size={64} $top="34%" $right="3%" /><Icon src={`${A}icon-crown.png`} $size={86} $bottom="9%" $right="7%" />
+        <HeroCopy><MiniLogo>ONE<br /><b>FRAME</b></MiniLogo><HeroTitle>CADA<br />FRAME<br /><em>IMPORTA</em></HeroTitle><HeroText>Studio Mobile onde criamos vídeos<br />que geram presença real.</HeroText><CTA href="#contato">FALE CONOSCO <span>↗</span></CTA></HeroCopy>
+        <HeroCard><CardTop><span>ONE FRAME</span><b>REC ●</b></CardTop><CardScreen><CardLines /><CardLogo>ONE<br /><strong>FRAME</strong></CardLogo><CardCaption>STUDIO MOBILE / CURITIBA</CardCaption></CardScreen></HeroCard>
+      </Hero>
+      <Band><span>01</span><b>ONE FRAME</b><span>STUDIO MOBILE</span><span>CURITIBA / BR</span></Band><Torn $tone="paper" />
 
-          <Band><span>01</span><b>ONE FRAME</b><span>STUDIO MOBILE</span><span>CURITIBA / BR</span></Band>
-          <Torn $tone="paper" />
+      <About id="sobre"><AboutGraphic><img className="texture" src={`${A}lines-01.webp`} alt="" /><Icon src={`${A}icon-headphones.png`} $size={72} $top="7%" $left="7%" /><Icon src={`${A}icon-dots.png`} $size={55} $top="15%" $right="5%" /><AboutMark>ONE<br /><span>FRA</span><br />ME</AboutMark><Icon src={`${A}icon-fire.png`} $size={78} $bottom="8%" $left="6%" /></AboutGraphic>
+        <AboutCopy><Label>02 / SOBRE NÓS</Label><h2>Somos a produtora<br />mobile que decidiu<br /><em>fazer diferente.</em></h2><p>Nada de vídeos genéricos, nada de conteúdo sem alma. Aqui a gente cria material rápido, com personalidade, estética forte e aquela energia que faz o público parar de rolar o feed.</p><p>Nosso trabalho é simples: fazer sua marca aparecer do jeito certo, na hora certa.</p><p>Se você quer conteúdo que prende atenção, gera presença e faz sua marca parecer viva, é aqui que começa.</p><TextLink href="#contato">Bora dar um upgrade na forma como o mundo vê você? <span>↗</span></TextLink></AboutCopy>
+      </About>
 
-          <About id="sobre">
-            <AboutGraphic>
-              <img className="texture" src={`${A}lines-01.webp`} alt="" />
-              <Icon src={`${A}icon-headphones.png`} $size={72} $top="7%" $left="7%" />
-              <Icon src={`${A}icon-dots.png`} $size={55} $top="15%" $right="5%" />
-              <AboutMark>ONE<br /><span>FRA</span><br />ME</AboutMark>
-              <Icon src={`${A}icon-fire.png`} $size={78} $bottom="8%" $left="6%" />
-            </AboutGraphic>
-            <AboutCopy>
-              <Label>02 / SOBRE NÓS</Label>
-              <h2>Somos a produtora<br />mobile que decidiu<br /><em>fazer diferente.</em></h2>
-              <p>Nada de vídeos genéricos, nada de conteúdo sem alma. Aqui a gente cria material rápido, com personalidade, estética forte e aquela energia que faz o público parar de rolar o feed.</p>
-              <p>Nosso trabalho é simples: fazer sua marca aparecer do jeito certo, na hora certa.</p>
-              <p>Se você quer conteúdo que prende atenção, gera presença e faz sua marca parecer viva, é aqui que começa.</p>
-              <TextLink href="#contato">Bora dar um upgrade na forma como o mundo vê você? <span>↗</span></TextLink>
-            </AboutCopy>
-          </About>
+      <Services id="servicos"><ServicesHead><Icon src={`${A}icon-sparks.png`} $size={62} $top="-20px" $left="3%" /><Icon src={`${A}icon-question.png`} $size={48} $top="42px" $right="5%" /><Label>03 / SERVIÇOS</Label><h2>O QUE VOCÊ<br /><em>PROCURA?</em></h2></ServicesHead>
+        <ServiceGrid>{services.map(([number,title,description,icon]) => <ServiceCard key={number}><div className="service-top"><span>{number}</span><img src={`${A}${icon}`} alt="" /></div><h3>{title}</h3><p>{description}</p><span className="plus">+</span></ServiceCard>)}</ServiceGrid>
+      </Services><Torn $tone="black" />
 
-          <Services id="servicos">
-            <ServicesHead>
-              <Icon src={`${A}icon-sparks.png`} $size={62} $top="-20px" $left="3%" />
-              <Icon src={`${A}icon-question.png`} $size={48} $top="42px" $right="5%" />
-              <Label>03 / SERVIÇOS</Label>
-              <h2>O QUE VOCÊ<br /><em>PROCURA?</em></h2>
-            </ServicesHead>
-            <ServiceGrid>
-              {services.map(([number, title, description, icon]) => (
-                <ServiceCard key={number}>
-                  <div className="service-top"><span>{number}</span><img src={`${A}${icon}`} alt="" /></div>
-                  <h3>{title}</h3><p>{description}</p><span className="plus">+</span>
-                </ServiceCard>
-              ))}
-            </ServiceGrid>
-          </Services>
+      <Sessions id="sessions"><SessionVisual><img src={`${A}lines-03.webp`} alt="" /><div className="red-overlay" /><Icon src={`${A}icon-camera.png`} $size={145} $bottom="10%" $left="9%" $invert /><SessionTitle>ONE<br /><b>SESSIONS</b></SessionTitle><span className="number">04</span></SessionVisual>
+        <SessionCopy><Label>04 / ONE SESSIONS</Label><h2>O momento<br /><em>não espera.</em></h2><p>Cobertura mobile de eventos, shows e experiências. Captamos a energia do momento e entregamos vídeos rápidos e impactantes para o mesmo dia.</p><CTA href="#contato">QUERO UMA ONE SESSION <span>↗</span></CTA></SessionCopy>
+      </Sessions><Torn $tone="paper" />
 
-          <Torn $tone="black" />
+      <Clients><Label>05 / CLIENTES</Label><h2>QUEM JÁ<br /><em>VIVEU O FRAME.</em></h2><ClientGrid>{clients.map(client => <span key={client}>{client}</span>)}</ClientGrid><Icon src={`${A}icon-crown.png`} $size={80} $bottom="-12px" $right="5%" /></Clients>
 
-          <Sessions id="sessions">
-            <SessionVisual>
-              <img src={`${A}lines-03.webp`} alt="" />
-              <div className="red-overlay" />
-              <Icon src={`${A}icon-camera.png`} $size={145} $bottom="10%" $left="9%" $invert />
-              <SessionTitle>ONE<br /><b>SESSIONS</b></SessionTitle>
-              <span className="number">04</span>
-            </SessionVisual>
-            <SessionCopy>
-              <Label>04 / ONE SESSIONS</Label>
-              <h2>O momento<br /><em>não espera.</em></h2>
-              <p>Cobertura mobile de eventos, shows e experiências. Captamos a energia do momento e entregamos vídeos rápidos e impactantes para o mesmo dia.</p>
-              <CTA href="#contato">QUERO UMA ONE SESSION <span>↗</span></CTA>
-            </SessionCopy>
-          </Sessions>
+      <Projects id="projetos"><ProjectsHead><Label>06 / NOSSOS TRABALHOS</Label><h2>NOSSOS<br /><em>TRABALHOS:</em></h2><Icon src={`${A}icon-sparks.png`} $size={58} $top="10px" $right="7%" /></ProjectsHead><ProjectGrid>{projects.map(project => <Project key={project.id} $featured={project.featured}><ProjectImage><img src={project.image} alt="" /><span>{project.id}</span><b>↗</b></ProjectImage><ProjectMeta><strong>{project.title}</strong><span>{project.category}</span><small>{project.year}</small></ProjectMeta></Project>)}</ProjectGrid><ProjectsCTA href="#contato">VER TODOS OS PROJETOS <span>↗</span></ProjectsCTA></Projects>
 
-          <Torn $tone="paper" />
-
-          <Clients>
-            <Label>05 / CLIENTES</Label>
-            <h2>QUEM JÁ<br /><em>VIVEU O FRAME.</em></h2>
-            <ClientGrid>{clients.map(client => <span key={client}>{client}</span>)}</ClientGrid>
-            <Icon src={`${A}icon-crown.png`} $size={80} $bottom="-12px" $right="5%" />
-          </Clients>
-
-          <Projects id="projetos">
-            <ProjectsHead>
-              <Label>06 / NOSSOS TRABALHOS</Label>
-              <h2>NOSSOS<br /><em>TRABALHOS:</em></h2>
-              <Icon src={`${A}icon-sparks.png`} $size={58} $top="10px" $right="7%" />
-            </ProjectsHead>
-            <ProjectGrid>
-              {projects.map(project => (
-                <Project key={project.id} $featured={project.featured}>
-                  <ProjectImage><img src={project.image} alt="" /><span>{project.id}</span><b>↗</b></ProjectImage>
-                  <ProjectMeta><strong>{project.title}</strong><span>{project.category}</span><small>{project.year}</small></ProjectMeta>
-                </Project>
-              ))}
-            </ProjectGrid>
-            <ProjectsCTA href="#contato">VER TODOS OS PROJETOS <span>↗</span></ProjectsCTA>
-          </Projects>
-
-          <Contact id="contato">
-            <Icon src={`${A}icon-shaka.png`} $size={100} $top="11%" $left="5%" />
-            <Icon src={`${A}icon-exclamation.png`} $size={70} $top="9%" $right="8%" />
-            <Icon src={`${A}icon-music.png`} $size={80} $bottom="10%" $right="8%" />
-            <Label>07 / FALE CONOSCO</Label>
-            <h2>VAMOS FAZER<br /><em>ACONTECER?</em></h2>
-            <p>Tem uma ideia, evento, marca ou história para colocar em movimento?</p>
-            <CTA href="mailto:hello@oneframe.com.br">FALE COM A GENTE <span>↗</span></CTA>
-          </Contact>
-          <Torn $tone="black" />
-        </main>
-
-        <Footer>
-          <div><b>ONE<br />FRAME</b><span>Studio Mobile onde criamos vídeos<br />que geram presença real.</span></div>
-          <nav><a href="#sobre">sobre</a><a href="#servicos">serviços</a><a href="#projetos">trabalhos</a><a href="#contato">contato</a></nav>
-          <small>© {new Date().getFullYear()} ONE FRAME<br />Curitiba — Brasil</small>
-        </Footer>
-      </Page>
-    </>
-  )
+      <Contact id="contato"><Icon src={`${A}icon-shaka.png`} $size={100} $top="11%" $left="5%" /><Icon src={`${A}icon-exclamation.png`} $size={70} $top="9%" $right="8%" /><Icon src={`${A}icon-music.png`} $size={80} $bottom="10%" $right="8%" /><Label>07 / FALE CONOSCO</Label><h2>VAMOS FAZER<br /><em>ACONTECER?</em></h2><p>Tem uma ideia, evento, marca ou história para colocar em movimento?</p><CTA href="mailto:hello@oneframe.com.br">FALE COM A GENTE <span>↗</span></CTA></Contact><Torn $tone="black" />
+    </main>
+    <Footer><div><b>ONE<br />FRAME</b><span>Studio Mobile onde criamos vídeos<br />que geram presença real.</span></div><nav><a href="#sobre">sobre</a><a href="#servicos">serviços</a><a href="#projetos">trabalhos</a><a href="#contato">contato</a></nav><small>© {new Date().getFullYear()} ONE FRAME<br />Curitiba — Brasil</small></Footer>
+  </Page></>
 }
 
 const Page = styled.div`background:${PAPER};color:${BLACK};overflow:hidden;`
@@ -210,7 +103,7 @@ const ServicesHead = styled.div`position:relative;text-align:center;margin:0 aut
 const ServiceGrid = styled.div`display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1250px;margin:auto;@media(max-width:1000px){grid-template-columns:repeat(2,1fr)}@media(max-width:600px){grid-template-columns:1fr}`
 const ServiceCard = styled.article`position:relative;background:#fff;min-height:310px;padding:22px;border:2px solid ${BLACK};border-radius:10px;box-shadow:6px 7px 0 ${RED};overflow:hidden;.service-top{display:flex;justify-content:space-between;align-items:start;color:${RED};font-size:11px;font-weight:900}.service-top img{width:48px;height:48px;object-fit:contain}h3{font:35px/.85 Impact,'Arial Black';text-transform:uppercase;letter-spacing:-.05em;margin:55px 0 20px}p{font-size:12px;line-height:1.25;max-width:260px}.plus{position:absolute;right:20px;bottom:14px;color:${RED};font-size:27px}`
 const Sessions = styled.section`display:grid;grid-template-columns:1fr 1fr;background:${BLACK};color:#fff;min-height:650px;@media(max-width:800px){grid-template-columns:1fr}`
-const SessionVisual = styled.div`position:relative;min-height:650px;overflow:hidden;background:${RED}>img{width:100%;height:100%;object-fit:cover;opacity:.68;filter:contrast(1.15)}.red-overlay{position:absolute;inset:0;background:${RED};mix-blend-mode:multiply;opacity:.65}`
+const SessionVisual = styled.div`position:relative;min-height:650px;overflow:hidden;background:${RED};>img{width:100%;height:100%;object-fit:cover;opacity:.68;filter:contrast(1.15)}.red-overlay{position:absolute;inset:0;background:${RED};mix-blend-mode:multiply;opacity:.65}`
 const SessionTitle = styled.span`position:absolute;z-index:3;left:10%;top:15%;font:clamp(60px,9vw,130px)/.7 Impact,'Arial Black';letter-spacing:-.08em;color:#fff;transform:rotate(-4deg);text-shadow:4px 4px 0 ${BLACK};b{color:${BLACK}}`
 const SessionCopy = styled.div`padding:100px 9vw;display:flex;flex-direction:column;justify-content:center;background:${BLACK};h2{font:clamp(65px,7vw,105px)/.78 Impact,'Arial Black';letter-spacing:-.07em;text-transform:uppercase;margin:22px 0 35px}em{font-family:Georgia,serif;font-weight:400;text-transform:none;color:${RED}}p{font-size:17px;line-height:1.25;max-width:480px;margin:0 0 35px}`
 const Clients = styled.section`position:relative;background:${PAPER};padding:90px 6vw 110px;text-align:center;overflow:hidden`
