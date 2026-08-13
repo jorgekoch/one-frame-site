@@ -11,21 +11,47 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ onNavigate }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+
   const closeMenu = () => {
     setMenuOpen(false);
     onNavigate?.();
   };
 
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) =>
-      event.key === "Escape" && setMenuOpen(false);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 801px)");
+    const handleChange = () => {
+      if (mediaQuery.matches) setMenuOpen(false);
+    };
+
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   return (
     <Header>
       <HeaderPaper src={`${A}papelrasgado.png`} alt="" aria-hidden="true" />
+
       <HeaderContent>
         <Logo href="#top" onClick={closeMenu} aria-label="One Frame">
           <img
@@ -40,7 +66,12 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
             FRAME
           </span>
         </Logo>
-        <Nav $open={menuOpen}>
+
+        <Nav
+          id="site-navigation"
+          $open={menuOpen}
+          aria-label="Navegação principal"
+        >
           <a href="#sobre" onClick={closeMenu}>
             sobre nós
           </a>
@@ -54,13 +85,17 @@ export function SiteHeader({ onNavigate }: SiteHeaderProps) {
             trabalhos
           </a>
         </Nav>
+
         <HeaderContact href="#contato" onClick={closeMenu}>
           FALE CONOSCO
         </HeaderContact>
+
         <MenuButton
+          type="button"
           onClick={() => setMenuOpen((value) => !value)}
-          aria-label="Abrir menu"
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={menuOpen}
+          aria-controls="site-navigation"
         >
           <i />
           <i />
@@ -126,6 +161,7 @@ const Logo = styled.a`
   @media (max-width: 800px) {
     gap: 8px;
     font-size: 18px;
+
     img.logo-mark {
       width: 38px;
       height: 38px;
@@ -147,7 +183,7 @@ const Nav = styled.nav<{ $open: boolean }>`
   a {
     color: #fff;
     text-shadow: 2px 2px 0 ${RED};
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
   }
 
   a:hover {
@@ -155,18 +191,25 @@ const Nav = styled.nav<{ $open: boolean }>`
     text-shadow: 2px 2px 0 ${BLACK};
   }
 
+  a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+  }
+
   @media (max-width: 800px) {
     position: fixed;
     top: 75px;
     left: 0;
     right: 0;
-    padding: 28px 5vw;
+    min-height: calc(100dvh - 75px);
+    padding: 28px 5vw 48px;
     background: ${BLACK};
     display: ${(props) => (props.$open ? "flex" : "none")};
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
     font-size: 14px;
+    overflow-y: auto;
   }
 `;
 
@@ -183,13 +226,16 @@ const HeaderContact = styled.a`
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.08em;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
     background: #fff;
     color: ${BLACK};
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
   }
 
   @media (max-width: 800px) {
@@ -200,10 +246,15 @@ const HeaderContact = styled.a`
 const MenuButton = styled.button`
   display: none;
   position: relative;
-  z-index: 3;
+  z-index: 20;
   background: none;
   border: 0;
   padding: 10px;
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
 
   @media (max-width: 800px) {
     display: grid;
@@ -215,5 +266,6 @@ const MenuButton = styled.button`
     width: 26px;
     height: 3px;
     background: #fff;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 `;
