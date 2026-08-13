@@ -112,5 +112,78 @@ export const GlobalStyle = createGlobalStyle`
     header > a:nth-of-type(2) { display:none !important; }
   }
 
+  /* Stronger torn-paper treatment — use the supplied artwork for every section break. */
+  main > div:nth-of-type(1),
+  main > div:nth-of-type(3) {
+    height:72px !important;
+    background:#f7f5ef url('/assets/torn-black-divider.webp') center / 100% 100% no-repeat !important;
+    clip-path:none !important;
+  }
+
+  main > div:nth-of-type(2),
+  main > div:nth-of-type(4) {
+    height:72px !important;
+    background:#080808 url('/assets/torn-white-divider.webp') center / 100% 100% no-repeat !important;
+    clip-path:none !important;
+  }
+
+  /* Add the paper-cut edge to the sections that currently do not have a divider. */
+  main > section:nth-of-type(2)::after,
+  main > section:nth-of-type(5)::after,
+  main > section:nth-of-type(6)::after {
+    content:'';
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;
+    height:48px;
+    pointer-events:none;
+    z-index:6;
+  }
+
+  main > section:nth-of-type(2)::after {
+    background:url('/assets/tear-black.png') center bottom / 100% 100% no-repeat;
+  }
+
+  main > section:nth-of-type(5)::after {
+    background:url('/assets/tear-black.png') center bottom / 100% 100% no-repeat;
+  }
+
+  main > section:nth-of-type(6)::after {
+    background:url('/assets/tear-white.png') center bottom / 100% 100% no-repeat;
+  }
+
+  /* Red contact block gets a real black paper bite at its top edge. */
+  main > section:nth-of-type(7)::before {
+    content:'';
+    position:absolute;
+    left:0;
+    right:0;
+    top:-1px;
+    height:50px;
+    background:url('/assets/tear-black-middle.png') center top / 100% 100% no-repeat;
+    pointer-events:none;
+    z-index:6;
+  }
+
+  @media(max-width:700px) {
+    main > div:nth-of-type(1),
+    main > div:nth-of-type(2),
+    main > div:nth-of-type(3),
+    main > div:nth-of-type(4) {
+      height:52px !important;
+    }
+
+    main > section:nth-of-type(2)::after,
+    main > section:nth-of-type(5)::after,
+    main > section:nth-of-type(6)::after {
+      height:34px;
+    }
+
+    main > section:nth-of-type(7)::before {
+      height:38px;
+    }
+  }
+
   @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 `
