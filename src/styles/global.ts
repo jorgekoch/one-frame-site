@@ -20,42 +20,33 @@ export const GlobalStyle = createGlobalStyle`
   img { display: block; max-width: 100%; }
   ::selection { background: #ef1b14; color: #fff; }
 
-  /* Black topbar + torn-paper layer positioned as a divider. */
+  /*
+   * HEADER REBUILD
+   *
+   * The supplied papelrasgado.png is used directly as the header
+   * background. There is no pseudo-element, no second image layer
+   * and no fixed overlay. The black area is the topbar and the torn
+   * white edge of the PNG becomes the divider before the hero.
+   */
   header {
     height: clamp(112px, 10.833vw, 208px) !important;
     background-color: #080808 !important;
-    background-size: 100% auto !important;
-    background-position: center -10.95vw !important;
-    background-repeat: no-repeat !important;
+    background-image: none !important;
     overflow: visible !important;
   }
 
-  header::after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 195px;
-    background-color: transparent;
-    background-image: url('/assets/papelrasgado.png');
-    background-repeat: no-repeat;
-    background-position: center -80px;
-    background-size: 100% auto;
-    pointer-events: none;
+  header > * {
+    position: relative !important;
+    z-index: 5 !important;
   }
 
   @media (max-width: 800px) {
     header {
-      height: 100px !important;
+      height: 125px !important;
+      min-height: 125px !important;
       padding: 14px 5vw 0 !important;
-    }
-
-    header::after {
-      height: 165px;
-      background-position: center -60px;
-      background-size: 100% auto;
+      background-size: auto 210px !important;
+      background-position: center top !important;
     }
   }
 
