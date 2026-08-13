@@ -146,11 +146,13 @@ const Nav = styled.nav<{ $open: boolean }>`
 
   a {
     color: #fff;
+    text-shadow: 2px 2px 0 ${RED};
     transition: color 0.2s ease;
   }
 
   a:hover {
     color: ${RED};
+    text-shadow: 2px 2px 0 ${BLACK};
   }
 
   @media (max-width: 800px) {

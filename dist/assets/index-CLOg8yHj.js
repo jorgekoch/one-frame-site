@@ -1055,11 +1055,13 @@ Error generating stack: `+e.message+`
 
   a {
     color: #fff;
+    text-shadow: 2px 2px 0 ${bi};
     transition: color 0.2s ease;
   }
 
   a:hover {
     color: ${bi};
+    text-shadow: 2px 2px 0 ${yi};
   }
 
   @media (max-width: 800px) {
