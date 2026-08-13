@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -65,4 +65,4 @@ export const GlobalStyle = createGlobalStyle`
       transition-duration: .01ms !important;
     }
   }
-`
+`;
