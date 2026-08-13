@@ -108,9 +108,11 @@ const Hero = styled.section`
   overflow: hidden;
 
   @media (max-width: 900px) {
+    min-height: auto;
     flex-direction: column;
-    align-items: flex-start;
-    padding-top: 120px;
+    align-items: stretch;
+    gap: 0;
+    padding: 96px 5vw 56px;
   }
 `;
 
@@ -141,6 +143,14 @@ const HeroIcon = styled.img<{
   right: ${(props) => props.$right || "auto"};
   bottom: ${(props) => props.$bottom || "auto"};
   object-fit: contain;
+
+  @media (max-width: 900px) {
+    width: 46px;
+  }
+
+  @media (max-width: 600px) {
+    width: 40px;
+  }
 `;
 
 const HeroCopy = styled.div`
@@ -164,6 +174,10 @@ const MiniLogo = styled.div`
     font-size: 17px;
     color: var(--color-red);
   }
+
+  @media (max-width: 900px) {
+    margin-bottom: 16px;
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -178,6 +192,11 @@ const HeroTitle = styled.h1`
     font-style: normal;
     color: var(--color-red);
   }
+
+  @media (max-width: 900px) {
+    font-size: clamp(72px, 18vw, 112px);
+    line-height: 0.78;
+  }
 `;
 
 const HeroText = styled.p`
@@ -186,6 +205,11 @@ const HeroText = styled.p`
   margin: 30px 0 18px;
   font-weight: 700;
   max-width: 390px;
+
+  @media (max-width: 900px) {
+    margin: 24px 0 18px;
+    max-width: 100%;
+  }
 `;
 
 const CTA = styled.a`
@@ -244,9 +268,18 @@ const HeroCard = styled.div`
   transform: rotate(-1.5deg);
 
   @media (max-width: 900px) {
-    width: 90%;
-    height: 300px;
-    margin: 40px auto 0;
+    width: 92%;
+    height: 280px;
+    margin: 28px auto 0;
+  }
+
+  @media (max-width: 600px) {
+    width: 94%;
+    height: 270px;
+    margin-top: 24px;
+    border-width: 3px;
+    border-radius: 24px;
+    padding: 10px;
   }
 `;
 
@@ -283,6 +316,10 @@ const ScrollCue = styled.a`
   &:focus-visible {
     outline: 3px solid var(--color-black);
     outline-offset: 5px;
+  }
+
+  @media (max-width: 900px) {
+    display: none;
   }
 `;
 
