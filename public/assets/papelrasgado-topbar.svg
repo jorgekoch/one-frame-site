@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="222" viewBox="0 0 1920 222" preserveAspectRatio="none">
+  <defs>
+    <filter id="paperNoise" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.035" numOctaves="3" seed="17" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="gray"/>
+      <feComponentTransfer in="gray" result="contrast">
+        <feFuncR type="linear" slope="0.55" intercept="0.20"/>
+        <feFuncG type="linear" slope="0.55" intercept="0.20"/>
+        <feFuncB type="linear" slope="0.55" intercept="0.20"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="contrast" mode="multiply"/>
+    </filter>
+    <filter id="paperShadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+    <clipPath id="tornTop">
+      <path d="M0 0H1920V133 C1890 136 1867 132 1844 140 C1823 146 1801 137 1778 143 C1753 149 1732 145 1709 151 C1687 156 1666 149 1645 154 C1620 160 1597 157 1574 163 C1550 169 1527 166 1505 173 C1483 179 1460 173 1437 178 C1413 183 1390 179 1368 184 C1344 189 1321 183 1298 188 C1275 193 1251 189 1228 193 C1204 197 1180 191 1156 195 C1133 199 1109 195 1085 200 C1062 204 1038 198 1015 202 C992 206 968 201 944 204 C920 207 896 204 873 207 C850 210 827 206 804 209 C781 212 757 209 734 212 C710 215 687 210 663 213 C640 216 617 213 594 216 C571 219 548 215 525 217 C502 220 479 216 456 218 C433 220 410 218 387 220 C364 221 341 219 318 220 C294 221 271 218 248 220 C225 221 202 219 179 220 C156 221 133 218 110 219 C87 220 64 217 41 219 C27 220 14 217 0 219Z"/>
+    </clipPath>
+  </defs>
+  <g filter="url(#paperShadow)">
+    <rect width="1920" height="160" fill="#090909"/>
+    <rect width="1920" height="160" fill="#090909" filter="url(#paperNoise)"/>
+    <rect width="1920" height="160" fill="#090909" opacity="0.18"/>
+    <g clip-path="url(#tornTop)">
+      <path d="M0 124 C80 115 120 130 195 120 S320 132 390 122 S520 135 600 124 S720 132 800 123 S930 135 1000 124 S1120 130 1200 121 S1330 136 1400 124 S1530 136 1600 123 S1740 132 1810 121 S1880 130 1920 122 V222 H0Z" fill="#f5f3ee"/>
+      <path d="M0 151 C80 143 140 158 220 149 S350 162 430 151 S560 165 650 154 S790 164 870 153 S1010 165 1090 154 S1220 165 1300 153 S1430 166 1510 154 S1650 165 1730 152 S1850 164 1920 153 V222 H0Z" fill="#f5f3ee" opacity="0.98"/>
+      <path d="M0 181 C90 173 145 185 235 177 S375 189 465 179 S610 191 700 181 S840 191 930 180 S1075 193 1165 181 S1310 192 1400 180 S1545 192 1635 179 S1780 191 1920 180 V222 H0Z" fill="#f5f3ee"/>
+    </g>
+  </g>
+</svg>
