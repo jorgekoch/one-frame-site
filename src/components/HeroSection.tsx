@@ -8,10 +8,10 @@ const PAPER = "#f7f5ef";
 export function HeroSection() {
   return (
     <Hero>
-      <PaperTexture />
-      <HeroIcon src={`${A}icon-arrow.png`} $top="17%" $right="8%" />
-      <HeroIcon src={`${A}icon-bolt.png`} $top="34%" $right="3%" />
-      <HeroIcon src={`${A}icon-crown.png`} $bottom="9%" $right="7%" />
+      <PaperTexture aria-hidden="true" />
+      <HeroIcon src={`${A}icon-arrow.png`} $top="17%" $right="8%" alt="" aria-hidden="true" />
+      <HeroIcon src={`${A}icon-bolt.png`} $top="34%" $right="3%" alt="" aria-hidden="true" />
+      <HeroIcon src={`${A}icon-crown.png`} $bottom="9%" $right="7%" alt="" aria-hidden="true" />
       <HeroCopy>
         <MiniLogo>
           ONE
@@ -40,10 +40,11 @@ export function HeroSection() {
           <b>REC ●</b>
         </CardTop>
         <CardScreen>
-          <CardLines />
+          <CardLines aria-hidden="true" />
           <CardVideo
             src="https://www.youtube-nocookie.com/embed/hOz8G8KFMd4?rel=0"
             title="Showreel One Frame"
+            loading="lazy"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowFullScreen
           />
@@ -162,11 +163,16 @@ const CTA = styled.a`
   font-weight: 900;
   letter-spacing: 0.08em;
   box-shadow: 4px 5px 0 ${BLACK};
-  transition: 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 7px 8px 0 ${BLACK};
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${BLACK};
+    outline-offset: 5px;
   }
 
   span {
@@ -216,6 +222,11 @@ const ScrollCue = styled.a`
   &:hover img,
   &:focus-visible img {
     transform: translateY(4px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${BLACK};
+    outline-offset: 5px;
   }
 `;
 
