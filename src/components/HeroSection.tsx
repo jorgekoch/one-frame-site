@@ -13,6 +13,7 @@ export function HeroSection() {
         $right="8%"
         alt=""
         aria-hidden="true"
+        loading="lazy"
         decoding="async"
       />
 
@@ -22,6 +23,7 @@ export function HeroSection() {
         $right="3%"
         alt=""
         aria-hidden="true"
+        loading="lazy"
         decoding="async"
       />
 
@@ -31,6 +33,7 @@ export function HeroSection() {
         $right="7%"
         alt=""
         aria-hidden="true"
+        loading="lazy"
         decoding="async"
       />
 
