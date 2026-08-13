@@ -11,5 +11,106 @@ export const GlobalStyle = createGlobalStyle`
   img { display:block; max-width:100%; }
   ::selection { background:#ef1b14; color:#fff; }
   @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* One Frame — topbar inspired by the supplied reference */
+  header {
+    height:96px !important;
+    padding:8px 3.5vw !important;
+    background:#080808 !important;
+    color:#fff !important;
+    box-shadow:0 1px 0 rgba(255,255,255,.06);
+  }
+
+  header::after {
+    content:'' !important;
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:-30px !important;
+    height:38px !important;
+    background:url('/assets/torn-white-divider.webp') center bottom / 100% 100% no-repeat !important;
+    filter:drop-shadow(0 5px 4px rgba(0,0,0,.25));
+    pointer-events:none !important;
+  }
+
+  header > a:first-child {
+    position:relative;
+    z-index:2;
+    min-width:88px;
+  }
+
+  header > a:first-child img {
+    width:54px !important;
+    height:54px !important;
+    object-fit:contain;
+    filter:invert(1) !important;
+  }
+
+  header > a:first-child span {
+    font-size:18px !important;
+    line-height:.76 !important;
+    letter-spacing:-.07em !important;
+  }
+
+  header nav {
+    align-items:center !important;
+    gap:34px !important;
+    margin-left:auto;
+    margin-right:30px;
+  }
+
+  header nav a {
+    color:#fff !important;
+    font-size:10px !important;
+    font-weight:900 !important;
+    letter-spacing:.04em !important;
+    text-transform:uppercase !important;
+    white-space:nowrap;
+    transition:color .18s ease;
+  }
+
+  header nav a:hover { color:#ef1b14 !important; }
+
+  header > a:nth-of-type(2) {
+    border:0 !important;
+    border-radius:0 !important;
+    padding:0 !important;
+    background:transparent !important;
+    color:#fff !important;
+    font-size:10px !important;
+    font-weight:900 !important;
+    letter-spacing:.04em !important;
+    text-transform:uppercase !important;
+    white-space:nowrap;
+  }
+
+  header > a:nth-of-type(2):hover {
+    background:transparent !important;
+    color:#ef1b14 !important;
+  }
+
+  header nav::after {
+    content:'◎   ◉';
+    color:#fff;
+    font-size:22px;
+    line-height:1;
+    letter-spacing:2px;
+    white-space:nowrap;
+    margin-left:2px;
+  }
+
+  @media(max-width:900px) {
+    header { height:82px !important; padding:8px 5vw !important; }
+    header::after { bottom:-23px !important; height:31px !important; }
+    header nav {
+      top:82px !important;
+      margin:0;
+      padding:28px 5vw !important;
+      background:#080808 !important;
+    }
+    header nav::after { display:none; }
+    header > a:nth-of-type(2) { display:none !important; }
+  }
+
   @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 `
