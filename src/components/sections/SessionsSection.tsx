@@ -2,168 +2,140 @@ import styled from "styled-components";
 import { TextButton } from "../ui/TextButton";
 
 const A = "/assets/";
+const XEROX_04 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia04 (2).webp`;
+const XEROX_05 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia05 (2).webp`;
 const XEROX_06 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia06 (2).webp`;
 const XEROX_07 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia07 (2).webp`;
 
 export function SessionsSection() {
   return (
     <Sessions id="sessions">
-      <SessionVisual>
-        <img className="xerox-main" src={XEROX_06} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-        <img className="xerox-secondary" src={XEROX_07} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-        <div className="red-field" aria-hidden="true" />
-        <div className="grain" aria-hidden="true" />
-        <span className="section-number">04</span>
-        <span className="vertical-label">ONE SESSIONS / MOBILE COVERAGE</span>
-        <Icon src={`${A}icon-camera.png`} $size={155} $bottom="8%" $left="8%" $invert alt="" aria-hidden="true" decoding="async" />
-        <SessionTitle>
+      <TopLine>
+        <span>04</span>
+        <strong>ONE SESSIONS</strong>
+        <span>MOBILE CONTENT / REAL TIME</span>
+      </TopLine>
+
+      <Poster>
+        <PosterTitle>
           ONE
           <br />
           <b>SESSIONS</b>
-        </SessionTitle>
-      </SessionVisual>
+        </PosterTitle>
+        <PosterAccent>AO VIVO</PosterAccent>
+        <PosterImage className="image-one" src={XEROX_06} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <PosterImage className="image-two" src={XEROX_04} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <PosterImage className="image-three" src={XEROX_05} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <Camera src={`${A}icon-camera.png`} alt="" aria-hidden="true" decoding="async" />
+        <PosterMark>04</PosterMark>
+      </Poster>
 
       <SessionCopy>
-        <CopyTexture src={XEROX_07} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-        <Label>04 / ONE SESSIONS</Label>
+        <Label>COBERTURA MOBILE</Label>
         <h2>
           O momento
           <br />
           <em>não espera.</em>
         </h2>
         <p>
-          Cobertura mobile de eventos, shows e experiências. Captamos a energia
-          do momento e entregamos vídeos rápidos e impactantes para o mesmo dia.
+          Eventos, shows e experiências registrados enquanto tudo acontece.
+          Conteúdo rápido, vertical e pronto para entrar no feed no mesmo dia.
         </p>
-        <TextButton href="#contato">
-          QUERO UMA ONE SESSION <span>↗</span>
-        </TextButton>
-        <CopyMeta>
-          <span>EVENTOS</span>
-          <span>SHOWS</span>
-          <span>EXPERIÊNCIAS</span>
-        </CopyMeta>
+        <SessionBottom>
+          <TextButton href="#contato">
+            QUERO UMA ONE SESSION <span>↗</span>
+          </TextButton>
+          <Meta>
+            <span>EVENTOS</span>
+            <span>SHOWS</span>
+            <span>EXPERIÊNCIAS</span>
+          </Meta>
+        </SessionBottom>
       </SessionCopy>
+
+      <SessionFooter>
+        <span>CAPTAR</span>
+        <i />
+        <span>EDITAR</span>
+        <i />
+        <span>PUBLICAR</span>
+        <i />
+        <span>NO MESMO DIA</span>
+      </SessionFooter>
     </Sessions>
   );
 }
-
-const Label = styled.span`
-  position: relative;
-  z-index: 3;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.62;
-`;
-
-const Icon = styled.img<{
-  $size: number;
-  $top?: string;
-  $right?: string;
-  $bottom?: string;
-  $left?: string;
-  $invert?: boolean;
-}>`
-  position: absolute;
-  z-index: 5;
-  width: ${(p) => p.$size}px;
-  height: auto;
-  top: ${(p) => p.$top || "auto"};
-  right: ${(p) => p.$right || "auto"};
-  bottom: ${(p) => p.$bottom || "auto"};
-  left: ${(p) => p.$left || "auto"};
-  object-fit: contain;
-  ${(p) => (p.$invert ? "filter: invert(1);" : "")}
-`;
 
 const Sessions = styled.section`
   position: relative;
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
-  min-height: 690px;
+  grid-template-rows: auto minmax(650px, 1fr) auto;
+  min-height: 790px;
   background: var(--color-paper);
   color: var(--color-black);
   overflow: hidden;
+  border-top: 2px solid var(--color-black);
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
   }
 `;
 
-const SessionVisual = styled.div`
+const TopLine = styled.div`
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 42px;
+  padding: 0 3.5vw;
+  border-bottom: 2px solid var(--color-black);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  strong {
+    color: var(--color-red);
+  }
+
+  span:last-child {
+    margin-left: auto;
+    opacity: 0.55;
+  }
+`;
+
+const Poster = styled.div`
   position: relative;
-  min-height: 690px;
+  min-height: 650px;
   overflow: hidden;
-  isolation: isolate;
   background: var(--color-red);
+  isolation: isolate;
   border-right: 2px solid var(--color-black);
 
-  .xerox-main,
-  .xerox-secondary {
-    position: absolute;
-    pointer-events: none;
-    width: 112%;
-    height: 112%;
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.08) brightness(1.12);
-  }
-
-  .xerox-main {
-    inset: -6% -5%;
-    opacity: 0.34;
-    transform: rotate(-4deg) scale(1.06);
-    mix-blend-mode: multiply;
-  }
-
-  .xerox-secondary {
-    right: -24%;
-    bottom: -15%;
-    width: 78%;
-    height: 78%;
-    opacity: 0.2;
-    transform: rotate(9deg);
-    mix-blend-mode: screen;
-  }
-
-  .red-field {
+  &::before {
+    content: "";
     position: absolute;
     inset: 0;
-    z-index: 1;
-    background: var(--color-red);
-    opacity: 0.72;
-    mix-blend-mode: multiply;
+    z-index: 0;
+    background:
+      linear-gradient(115deg, transparent 0 42%, rgba(0, 0, 0, 0.1) 42.2% 42.5%, transparent 42.7%),
+      linear-gradient(165deg, transparent 0 70%, rgba(255, 255, 255, 0.13) 70.2% 70.5%, transparent 70.7%);
     pointer-events: none;
-  }
-
-  .grain {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 0.55px, transparent 0.7px);
-    background-size: 5px 5px;
-    opacity: 0.18;
-  }
-
-  @media (max-width: 800px) {
-    min-height: 560px;
-    border-right: 0;
-    border-bottom: 2px solid var(--color-black);
   }
 `;
 
-const SessionTitle = styled.div`
+const PosterTitle = styled.div`
   position: absolute;
-  z-index: 4;
-  left: 8%;
-  top: 17%;
-  font: clamp(68px, 9vw, 132px) / 0.69 var(--font-display);
-  letter-spacing: -0.085em;
+  z-index: 5;
+  left: 7%;
+  top: 8%;
+  font: clamp(76px, 10vw, 148px) / 0.68 var(--font-display);
+  letter-spacing: -0.09em;
   text-transform: uppercase;
   color: var(--color-white);
-  transform: rotate(-4deg);
+  transform: rotate(-3deg);
   text-shadow: 5px 5px 0 var(--color-black);
 
   b {
@@ -172,37 +144,120 @@ const SessionTitle = styled.div`
   }
 `;
 
-const CopyTexture = styled.img`
+const PosterAccent = styled.span`
   position: absolute;
-  z-index: 0;
-  width: 440px;
-  height: 440px;
-  right: -190px;
-  top: -105px;
+  z-index: 6;
+  top: 9%;
+  right: 7%;
+  padding: 7px 11px;
+  border: 2px solid var(--color-black);
+  border-radius: 999px;
+  background: var(--color-paper);
+  color: var(--color-black);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  transform: rotate(5deg);
+`;
+
+const PosterImage = styled.img`
+  position: absolute;
+  z-index: 2;
   object-fit: cover;
-  opacity: 0.07;
-  filter: grayscale(1) contrast(1.15);
-  transform: rotate(12deg);
+  filter: grayscale(1) contrast(1.2);
   pointer-events: none;
+  border: 2px solid var(--color-black);
+  box-shadow: 7px 8px 0 rgba(0, 0, 0, 0.9);
+
+  &.image-one {
+    width: 48%;
+    height: 55%;
+    right: 5%;
+    bottom: 7%;
+    transform: rotate(4deg);
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+  }
+
+  &.image-two {
+    width: 34%;
+    height: 38%;
+    left: 7%;
+    bottom: 6%;
+    transform: rotate(-7deg);
+    mix-blend-mode: screen;
+    opacity: 0.55;
+  }
+
+  &.image-three {
+    width: 31%;
+    height: 32%;
+    right: 27%;
+    top: 38%;
+    transform: rotate(-5deg);
+    mix-blend-mode: multiply;
+    opacity: 0.42;
+  }
+`;
+
+const Camera = styled.img`
+  position: absolute;
+  z-index: 7;
+  width: 105px;
+  left: 7%;
+  bottom: 7%;
+  filter: invert(1);
+  transform: rotate(-8deg);
+`;
+
+const PosterMark = styled.span`
+  position: absolute;
+  z-index: 7;
+  right: 7%;
+  bottom: 6%;
+  font: 100px / 0.8 var(--font-display);
+  letter-spacing: -0.08em;
+  color: var(--color-white);
+  opacity: 0.9;
+`;
+
+const Label = styled.span`
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.58;
 `;
 
 const SessionCopy = styled.div`
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 95px 8vw 85px;
+  padding: 85px 8vw 70px;
   background: var(--color-paper);
-  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    right: -90px;
+    top: 16%;
+    background: url("/assets/251107_LA_ONEFRAME_Tela_Fotocopia07 (2).webp") center / cover no-repeat;
+    opacity: 0.07;
+    filter: grayscale(1);
+    transform: rotate(14deg);
+    pointer-events: none;
+  }
 
   h2 {
     position: relative;
-    z-index: 2;
-    font: clamp(62px, 7vw, 105px) / 0.78 var(--font-display);
-    letter-spacing: -0.07em;
+    z-index: 1;
+    margin: 20px 0 32px;
+    font: clamp(65px, 7vw, 108px) / 0.76 var(--font-display);
+    letter-spacing: -0.075em;
     text-transform: uppercase;
-    margin: 22px 0 34px;
   }
 
   em {
@@ -215,38 +270,67 @@ const SessionCopy = styled.div`
 
   p {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     max-width: 470px;
-    margin: 0 0 32px;
+    margin: 0 0 34px;
     font-size: 17px;
-    line-height: 1.28;
-  }
-
-  ${TextButton} {
-    position: relative;
-    z-index: 2;
+    line-height: 1.3;
   }
 
   @media (max-width: 800px) {
-    padding: 75px 8vw 85px;
+    padding: 70px 8vw 65px;
   }
 `;
 
-const CopyMeta = styled.div`
+const SessionBottom = styled.div`
   position: relative;
   z-index: 2;
   display: flex;
+  align-items: center;
+  gap: 24px;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 46px;
+`;
+
+const Meta = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
 
   span {
-    padding: 7px 10px;
+    padding: 7px 9px;
     border: 1px solid var(--color-black);
     border-radius: 999px;
     font-size: 8px;
     font-weight: 900;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
   }
 `;
 
+const SessionFooter = styled.div`
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 45px;
+  padding: 0 3.5vw;
+  border-top: 2px solid var(--color-black);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+
+  i {
+    width: 34px;
+    height: 1px;
+    background: var(--color-black);
+  }
+
+  span:last-child {
+    color: var(--color-red);
+  }
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 5vw;
+  }
+`;
