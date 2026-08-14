@@ -6,8 +6,9 @@ const A = "/assets/";
 export function ServicesSection({ services }: { services: readonly Service[] }) {
   return (
     <Services id="servicos">
-      <Texture className="texture-left" src={`${A}lines-02.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-      <Texture className="texture-right" src={`${A}lines-05.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <Texture className="texture-left" src={`${A}tear-black-middle.png`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <Texture className="texture-right" src={`${A}tear-black-right.png`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <LogoDetail src={`${A}logo-symbol-black.png`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <ServicesHead>
         <Icon src={`${A}icon-sparks.png`} $size={62} $top="-20px" $left="3%" alt="" aria-hidden="true" decoding="async" />
         <Icon src={`${A}icon-question.png`} $size={48} $top="42px" $right="5%" alt="" aria-hidden="true" decoding="async" />
@@ -20,7 +21,8 @@ export function ServicesSection({ services }: { services: readonly Service[] }) 
 }
 
 const Label = styled.span`font-size:9px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;opacity:.65;`;
-const Texture = styled.img`position:absolute;z-index:0;pointer-events:none;object-fit:cover;mix-blend-mode:multiply;filter:contrast(1.15);&.texture-left{width:38vw;max-width:540px;height:520px;left:-12vw;top:90px;opacity:.055;transform:rotate(-10deg)}&.texture-right{width:32vw;max-width:480px;height:430px;right:-10vw;bottom:30px;opacity:.045;transform:rotate(12deg)}`;
+const Texture = styled.img`position:absolute;z-index:0;pointer-events:none;object-fit:cover;filter:grayscale(1) contrast(1.2);&.texture-left{width:42vw;max-width:600px;height:560px;left:-15vw;top:65px;opacity:.075;mix-blend-mode:multiply;transform:rotate(-7deg)}&.texture-right{width:34vw;max-width:500px;height:500px;right:-12vw;bottom:0;opacity:.055;mix-blend-mode:multiply;transform:rotate(11deg)}`;
+const LogoDetail = styled.img`position:absolute;z-index:0;width:390px;height:auto;right:-155px;top:18%;opacity:.035;transform:rotate(-14deg);pointer-events:none;`;
 const Icon = styled.img<{ $size:number;$top?:string;$right?:string;$bottom?:string;$left?:string }>`position:absolute;z-index:4;width:${p=>p.$size}px;height:auto;top:${p=>p.$top||"auto"};right:${p=>p.$right||"auto"};bottom:${p=>p.$bottom||"auto"};left:${p=>p.$left||"auto"};object-fit:contain;`;
 const Services = styled.section`position:relative;overflow:hidden;background:var(--color-paper);padding:110px 5vw 125px;`;
 const ServicesHead = styled.div`position:relative;z-index:1;text-align:center;margin:0 auto 65px;h2{font:clamp(62px,8vw,115px)/.78 var(--font-display);letter-spacing:-.07em;margin:20px 0;text-transform:uppercase}em{font-family:var(--font-accent);font-weight:400;text-transform:none;color:var(--color-red)}`;
