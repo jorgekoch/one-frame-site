@@ -1,31 +1,22 @@
-import type { ReactNode } from "react";
 import styled from "styled-components";
 
-type TextButtonProps = {
-  href: string;
-  children: ReactNode;
-};
-
-export function TextButton({ href, children }: TextButtonProps) {
-  return <Button href={href}>{children}</Button>;
-}
-
-const Button = styled.a`
+export const TextButton = styled.a`
   display: inline-flex;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
+  gap: 14px;
+  width: fit-content;
+  padding: 13px 20px;
   background: var(--color-red);
   color: var(--color-white);
   border: 2px solid var(--color-black);
   border-radius: 999px;
-  padding: 13px 22px;
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
   box-shadow: 4px 5px 0 var(--color-black);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
     transform: translate(-2px, -2px);
@@ -35,9 +26,5 @@ const Button = styled.a`
   &:focus-visible {
     outline: 3px solid var(--color-black);
     outline-offset: 5px;
-  }
-
-  span {
-    font-size: 16px;
   }
 `;

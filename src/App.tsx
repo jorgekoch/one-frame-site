@@ -2,15 +2,15 @@ import { GlobalStyle } from "./styles/global";
 import { clients } from "./data/clients";
 import { projects } from "./data/projects";
 import { services } from "./data/services";
-import { HeroSection } from "./components/HeroSection";
+import { HeroSection } from "./components/sections/HeroSection";
 import { PageSections } from "./components/PageSections";
 import {
   Band as SectionBand,
-  SiteFooter,
   Torn as TornDivider,
-} from "./components/SectionChrome";
-import { SiteHeader } from "./components/SiteHeader";
-import { PageShell } from "./components/PageShell";
+} from "./components/ui/SectionChrome";
+import { SiteHeader } from "./components/layout/SiteHeader";
+import { SiteFooter } from "./components/layout/SiteFooter";
+import { PageShell } from "./components/layout/PageShell";
 
 export function App() {
   return (
