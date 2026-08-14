@@ -2,12 +2,12 @@ import styled from "styled-components";
 import type { Project } from "../../data/projects";
 
 const A = "/assets/";
+const XEROX_09 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia09 (2).webp`;
 
 export function ProjectsSection({ projects }: { projects: Project[] }) {
   return (
     <Projects id="projetos">
-      <Texture className="texture-main" src={`${A}tear-black-middle.png`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-      <LogoDetail src={`${A}logo-symbol-outline.png`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <Texture className="texture-main" src={XEROX_09} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <ProjectsHead>
         <Label>06 / NOSSOS TRABALHOS</Label>
         <h2>NOSSOS<br /><em>TRABALHOS:</em></h2>
@@ -31,8 +31,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
 
 const Label = styled.span`font-size:9px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;opacity:.65;`;
 const Icon = styled.img<{ $top?: string; $right?: string }>`position:absolute;z-index:4;width:58px;height:auto;top:${p=>p.$top||"auto"};right:${p=>p.$right||"auto"};object-fit:contain;`;
-const Texture = styled.img`position:absolute;z-index:0;pointer-events:none;filter:grayscale(1) contrast(1.15);&.texture-main{width:520px;height:520px;left:-250px;top:55px;object-fit:cover;opacity:.06;transform:rotate(-9deg)}`;
-const LogoDetail = styled.img`position:absolute;z-index:0;width:430px;height:auto;right:-170px;bottom:-110px;opacity:.035;transform:rotate(14deg);pointer-events:none;`;
+const Texture = styled.img`position:absolute;z-index:0;pointer-events:none;filter:grayscale(1) contrast(1.2);width:560px;height:560px;left:-280px;top:45px;object-fit:cover;opacity:.06;transform:rotate(-9deg);`;
 const Projects = styled.section`position:relative;overflow:hidden;background:var(--color-paper);padding:120px 5vw 150px;`;
 const ProjectsHead = styled.div`position:relative;z-index:1;text-align:center;margin-bottom:75px;h2{font:clamp(70px,9vw,125px)/.75 var(--font-display);letter-spacing:-.07em;margin:20px 0;text-transform:uppercase;}em{font-family:var(--font-accent);font-weight:400;text-transform:none;color:var(--color-red);}`;
 const ProjectGrid = styled.div`position:relative;z-index:1;max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(12,1fr);gap:55px 20px;@media(max-width:800px){display:block}`;
