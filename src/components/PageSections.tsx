@@ -29,6 +29,7 @@ export function PageSections({
       <SessionsSection />
       <Torn tone="paper" />
       <ClientsSection clients={clients} />
+      <Torn tone="black" />
       <ProjectsSection projects={projects} />
       <ContactSection />
       <Torn tone="black" />
