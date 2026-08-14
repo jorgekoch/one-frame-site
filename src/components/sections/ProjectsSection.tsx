@@ -15,7 +15,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
         {projects.map((project) => (
           <ProjectCard key={project.id} $featured={project.featured}>
             <ProjectImage>
-              <img src={project.image} alt={`Textura gráfica do ${project.title}`} loading="lazy" decoding="async" />
+              <img src={project.image} alt={`Imagem do projeto ${project.title}`} loading="lazy" decoding="async" />
               <span>{project.id}</span><b aria-hidden="true">↗</b>
             </ProjectImage>
             <ProjectMeta><strong>{project.title}</strong><span>{project.category}</span><small>{project.year}</small></ProjectMeta>
