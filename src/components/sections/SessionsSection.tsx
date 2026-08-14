@@ -119,6 +119,7 @@ const SessionTitle = styled.span`
   text-shadow: 4px 4px 0 var(--color-black);
   b {
     color: var(--color-black);
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
   }
 `;
 const SessionCopy = styled.div`
