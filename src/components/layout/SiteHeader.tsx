@@ -52,36 +52,14 @@ export function SiteHeader({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 const Header = styled.header`
-  position: fixed;
-  z-index: 100;
-  inset: 0 0 auto;
-  width: 100%;
-  height: 100px;
-  background: var(--color-red);
-  overflow: visible;
-
+  position: fixed; z-index: 100; inset: 0 0 auto; width: 100%; height: 100px; background: transparent; overflow: visible;
   @media (max-width: 800px) { height: 75px; }
 `;
 
 const HeaderPaper = styled.img`
-  position: absolute;
-  z-index: 1;
-  top: -110px;
-  left: 0;
-  width: 100%;
-  height: 320px;
-  object-fit: fill;
-  object-position: center bottom;
-  display: block;
-  pointer-events: none;
-  user-select: none;
-  mix-blend-mode: multiply;
-
-  @media (max-width: 800px) {
-    top: -26px;
-    height: 78px;
-    object-fit: cover;
-  }
+  position: absolute; z-index: 1; top: -110px; left: 0; width: 100%; height: 320px;
+  object-fit: fill; object-position: center bottom; display: block; pointer-events: none; user-select: none;
+  @media (max-width: 800px) { top: -26px; height: 78px; object-fit: cover; }
 `;
 
 const HeaderContent = styled.div`
@@ -99,15 +77,14 @@ const Logo = styled.a`
 const Nav = styled.nav<{ $open: boolean }>`
   position: relative; z-index: 30; display: flex; align-items: center; gap: 38px;
   font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .1em;
-  a { color: var(--color-black); text-shadow: 2px 2px 0 var(--color-white); transition: color .2s ease, text-shadow .2s ease; }
-  a:hover { color: var(--color-white); text-shadow: 2px 2px 0 var(--color-black); }
+  a { color: var(--color-white); text-shadow: 2px 2px 0 var(--color-red); transition: color .2s ease, text-shadow .2s ease; }
+  a:hover { color: var(--color-red); text-shadow: 2px 2px 0 var(--color-black); }
   @media (max-width: 800px) {
     position: fixed; z-index: 40; top: 75px; left: 0; right: 0; padding: 30px 7vw 34px;
     background: var(--color-black); border-top: 2px solid var(--color-red);
     display: ${props => props.$open ? "flex" : "none"}; flex-direction: column; align-items: stretch; gap: 0; font-size: 14px;
     box-shadow: 0 12px 25px rgba(0,0,0,.22);
-    a { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.15); color: var(--color-white); text-shadow: none; }
-    a:hover { color: var(--color-red); text-shadow: none; }
+    a { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.15); text-shadow: none; }
   }
 `;
 
@@ -115,7 +92,7 @@ const MobileContact = styled.a`
   display: none;
   @media (max-width: 800px) {
     display: inline-flex; align-items: center; justify-content: center; margin-top: 20px; padding: 12px 18px !important;
-    border: 2px solid var(--color-white); border-radius: 999px; background: var(--color-red); color: var(--color-white) !important;
+    border: 2px solid var(--color-black); border-radius: 999px; background: var(--color-red); color: var(--color-white) !important;
     text-align: center; font-size: 11px; letter-spacing: .08em; box-shadow: 3px 3px 0 var(--color-white);
   }
 `;
@@ -129,9 +106,9 @@ const MenuBackdrop = styled.button`
 const HeaderContact = styled.a`
   position: relative; z-index: 30; display: inline-flex; align-items: center; justify-content: center;
   border: 2px solid var(--color-black); border-radius: 999px; padding: 10px 19px;
-  background: var(--color-black); color: var(--color-white); font-size: 11px; font-weight: 900; letter-spacing: .08em;
+  background: var(--color-red); color: var(--color-white); font-size: 11px; font-weight: 900; letter-spacing: .08em;
   box-shadow: 4px 4px 0 var(--color-white); transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-  &:hover { transform: translate(-1px,-1px); box-shadow: 6px 6px 0 var(--color-white); background: var(--color-white); color: var(--color-black); }
+  &:hover { transform: translate(-1px,-1px); box-shadow: 6px 6px 0 var(--color-white); background: #ff2a22; }
   @media (max-width: 800px) { display: none; }
 `;
 
