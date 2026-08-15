@@ -3,31 +3,54 @@ import type { Service } from "../../data/services";
 
 const A = "/assets/";
 
-export function ServicesSection({ services }: { services: readonly Service[] }) {
+export function ServicesSection({
+  services,
+}: {
+  services: readonly Service[];
+}) {
   return (
     <Services id="servicos">
-      <InkMark aria-hidden="true">03</InkMark>
       <ServicesHead>
         <div className="head-copy">
           <Label>03 / SERVIÇOS</Label>
-          <h2>O QUE VOCÊ<br /><em>PROCURA?</em></h2>
+          <h2>
+            O QUE VOCÊ
+            <br />
+            <em>PROCURA?</em>
+          </h2>
         </div>
-        <Icon src={`${A}icon-question.png`} $size={50} alt="" aria-hidden="true" decoding="async" />
+        <Icon
+          src={`${A}icon-question.png`}
+          $size={50}
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+        />
       </ServicesHead>
       <ServiceGrid>
         {services.map(([number, title, description, icon], index) => (
           <ServiceCard key={number} $index={index}>
             <div className="service-top">
               <span>{number}</span>
-              <img src={`${A}${icon}`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <img
+                src={`${A}${icon}`}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <h3>{title}</h3>
             <p>{description}</p>
-            <span className="plus" aria-hidden="true">↗</span>
+            <span className="plus" aria-hidden="true">
+              ↗
+            </span>
           </ServiceCard>
         ))}
       </ServiceGrid>
-      <FooterNote>CONTEÚDO QUE ACONTECE <span>AO VIVO.</span></FooterNote>
+      <FooterNote>
+        CONTEÚDO QUE ACONTECE <span>AO VIVO.</span>
+      </FooterNote>
     </Services>
   );
 }
@@ -39,18 +62,6 @@ const Label = styled.span`
   text-transform: uppercase;
   color: var(--color-white);
   opacity: 0.78;
-`;
-
-const InkMark = styled.span`
-  position: absolute;
-  z-index: 2;
-  left: 4vw;
-  bottom: 42px;
-  font: 700 12px var(--font-display);
-  writing-mode: vertical-rl;
-  letter-spacing: 0.12em;
-  color: var(--color-white);
-  opacity: 0.72;
 `;
 
 const Icon = styled.img<{ $size: number }>`
@@ -131,7 +142,11 @@ const ServiceCard = styled.article<{ $index: number }>`
   box-shadow: 5px 6px 0 var(--color-black);
   overflow: hidden;
   transform: rotate(${(p) => [-1.1, 0.45, 0.8, -0.55][p.$index]}deg);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease,
+    color 0.22s ease;
 
   &:hover {
     transform: translateY(-6px) rotate(0deg);
