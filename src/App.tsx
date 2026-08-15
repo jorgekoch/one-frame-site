@@ -21,7 +21,7 @@ export function App() {
         <main>
           <HeroSection />
           <SectionBand />
-          <TornDivider tone="paper" />
+          <TornDivider />
           <PageSections
             projects={projects}
             services={services}

@@ -23,16 +23,16 @@ export function PageSections({
   return (
     <>
       <AboutSection />
-      <Torn tone="paper" />
+      <Torn />
       <ServicesSection services={services} />
-      <Torn tone="black" />
+      <Torn />
       <SessionsSection />
-      <Torn tone="paper" />
+      <Torn />
       <ClientsSection clients={clients} />
-      <Torn tone="black" />
+      <Torn />
       <ProjectsSection projects={projects} />
+      <Torn />
       <ContactSection />
-      <Torn tone="black" />
     </>
   );
 }
