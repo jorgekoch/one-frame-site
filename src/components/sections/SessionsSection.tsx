@@ -2,10 +2,6 @@ import styled from "styled-components";
 import { TextButton } from "../ui/TextButton";
 
 const A = "/assets/";
-const XEROX_04 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia04 (2).webp`;
-const XEROX_05 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia05 (2).webp`;
-const XEROX_06 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia06 (2).webp`;
-const XEROX_07 = `${A}251107_LA_ONEFRAME_Tela_Fotocopia07 (2).webp`;
 
 export function SessionsSection() {
   return (
@@ -23,9 +19,6 @@ export function SessionsSection() {
           <b>SESSIONS</b>
         </PosterTitle>
         <PosterAccent>AO VIVO</PosterAccent>
-        <PosterImage className="image-one" src={XEROX_06} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-        <PosterImage className="image-two" src={XEROX_04} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-        <PosterImage className="image-three" src={XEROX_05} alt="" aria-hidden="true" loading="lazy" decoding="async" />
         <Camera src={`${A}icon-camera.png`} alt="" aria-hidden="true" decoding="async" />
         <PosterMark>04</PosterMark>
       </Poster>
@@ -113,17 +106,6 @@ const Poster = styled.div`
   background: var(--color-red);
   isolation: isolate;
   border-right: 2px solid var(--color-black);
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background:
-      linear-gradient(115deg, transparent 0 42%, rgba(0, 0, 0, 0.1) 42.2% 42.5%, transparent 42.7%),
-      linear-gradient(165deg, transparent 0 70%, rgba(255, 255, 255, 0.13) 70.2% 70.5%, transparent 70.7%);
-    pointer-events: none;
-  }
 `;
 
 const PosterTitle = styled.div`
@@ -158,46 +140,6 @@ const PosterAccent = styled.span`
   font-weight: 900;
   letter-spacing: 0.16em;
   transform: rotate(5deg);
-`;
-
-const PosterImage = styled.img`
-  position: absolute;
-  z-index: 2;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.2);
-  pointer-events: none;
-  border: 2px solid var(--color-black);
-  box-shadow: 7px 8px 0 rgba(0, 0, 0, 0.9);
-
-  &.image-one {
-    width: 48%;
-    height: 55%;
-    right: 5%;
-    bottom: 7%;
-    transform: rotate(4deg);
-    mix-blend-mode: multiply;
-    opacity: 0.7;
-  }
-
-  &.image-two {
-    width: 34%;
-    height: 38%;
-    left: 7%;
-    bottom: 6%;
-    transform: rotate(-7deg);
-    mix-blend-mode: screen;
-    opacity: 0.55;
-  }
-
-  &.image-three {
-    width: 31%;
-    height: 32%;
-    right: 27%;
-    top: 38%;
-    transform: rotate(-5deg);
-    mix-blend-mode: multiply;
-    opacity: 0.42;
-  }
 `;
 
 const Camera = styled.img`
@@ -236,20 +178,6 @@ const SessionCopy = styled.div`
   padding: 85px 8vw 70px;
   background: var(--color-paper);
   position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    width: 240px;
-    height: 240px;
-    right: -90px;
-    top: 16%;
-    background: url("/assets/251107_LA_ONEFRAME_Tela_Fotocopia07 (2).webp") center / cover no-repeat;
-    opacity: 0.07;
-    filter: grayscale(1);
-    transform: rotate(14deg);
-    pointer-events: none;
-  }
 
   h2 {
     position: relative;
