@@ -6,12 +6,6 @@ const A = "/assets/";
 export function SessionsSection() {
   return (
     <Sessions id="sessions">
-      <TopLine>
-        <span>04</span>
-        <strong>ONE SESSIONS</strong>
-        <span>MOBILE CONTENT / REAL TIME</span>
-      </TopLine>
-
       <Poster>
         <PosterTitle>
           ONE
@@ -24,7 +18,7 @@ export function SessionsSection() {
       </Poster>
 
       <SessionCopy>
-        <Label>COBERTURA MOBILE</Label>
+        <Label>04 / ONE SESSIONS</Label>
         <h2>
           O momento
           <br />
@@ -44,6 +38,7 @@ export function SessionsSection() {
             <span>EXPERIÊNCIAS</span>
           </Meta>
         </SessionBottom>
+        <ContentNote>MOBILE CONTENT / REAL TIME</ContentNote>
       </SessionCopy>
 
       <SessionFooter>
@@ -63,7 +58,7 @@ const Sessions = styled.section`
   position: relative;
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
-  grid-template-rows: auto minmax(650px, 1fr) auto;
+  grid-template-rows: minmax(650px, 1fr) auto;
   min-height: 790px;
   background: var(--color-paper);
   color: var(--color-black);
@@ -72,30 +67,7 @@ const Sessions = styled.section`
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
-  }
-`;
-
-const TopLine = styled.div`
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 42px;
-  padding: 0 3.5vw;
-  border-bottom: 2px solid var(--color-black);
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-
-  strong {
-    color: var(--color-red);
-  }
-
-  span:last-child {
-    margin-left: auto;
-    opacity: 0.55;
+    grid-template-rows: auto auto auto;
   }
 `;
 
@@ -168,7 +140,7 @@ const Label = styled.span`
   font-weight: 900;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.58;
+  color: var(--color-red);
 `;
 
 const SessionCopy = styled.div`
@@ -231,6 +203,22 @@ const Meta = styled.div`
     font-size: 8px;
     font-weight: 900;
     letter-spacing: 0.1em;
+  }
+`;
+
+const ContentNote = styled.span`
+  position: absolute;
+  right: 8vw;
+  bottom: 26px;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.45;
+
+  @media (max-width: 800px) {
+    position: static;
+    margin-top: 30px;
   }
 `;
 
